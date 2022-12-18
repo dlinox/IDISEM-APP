@@ -10,7 +10,8 @@
 
         <ul class="dropdown-menu">
             <li v-for="(item, index) in types" :key="index" role="button">
-                <div class="dropdown-item" @click="selectType(item.input)" :class="item.input == modelValue ? 'active' : ''">
+                <div class="dropdown-item " @click="selectType(item.input)"
+                    :class="[item.input == modelValue ? 'active' : '', item.active ? '' : 'disabled']">
                     <i :class="item.icon" class="me-2"></i> {{ item.name }}
                 </div>
                 <template v-if="item.divider">
@@ -30,7 +31,7 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue']);
 
 
-const icono  = ref('null');
+const icono = ref('null');
 
 
 const selectType = (val) => {
@@ -42,42 +43,48 @@ const types = [
     {
         name: 'Respuesta Corta',
         icon: 'bi bi-filter-left',
-        input: 'TEXT'
+        input: 'TEXT',
+        active: false,
     },
 
     {
         name: 'Respuesta Larga',
         icon: 'bi bi-text-left',
         input: 'TEXTAREA',
+        active: false,
         divider: true
     },
     {
         name: 'Opción unica',
         icon: 'bi bi-ui-radios',
-        input: 'RADIO'
+        input: 'RADIO',
+        active: true,
+
     },
     {
         name: 'Opción multiple',
         icon: 'bi bi-ui-checks',
+        active: true,
         input: 'CHECKBOX'
     },
     {
         name: 'Desplegable',
         icon: 'bi bi-menu-app-fill',
+        active: true,
         input: 'SELECT',
         divider: true
     },
-    {
-        name: 'Escala',
-        icon: 'bi bi-three-dots ',
-        code: 'EL',
-        divider: true
-    },
-    {
-        name: 'Archivo',
-        icon: 'bi bi-cloud-arrow-up-fill',
-        code: 'AR'
-    },
+    /*  {
+          name: 'Escala',
+          icon: 'bi bi-three-dots ',
+          code: 'EL',
+          divider: true
+      },
+      {
+          name: 'Archivo',
+          icon: 'bi bi-cloud-arrow-up-fill',
+          code: 'AR'
+      },*/
 ]
 
 </script>
