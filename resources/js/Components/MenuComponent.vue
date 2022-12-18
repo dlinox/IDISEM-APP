@@ -25,12 +25,9 @@
 
 <script setup>
 
-import { Link } from '@inertiajs/inertia-vue3'
 import { computed } from 'vue';
-
-
+import { Link } from '@inertiajs/inertia-vue3'
 const pathname = computed(() => window.location.pathname)
-
 const menuItems = [
     {
         'name': 'Admin',

@@ -1,26 +1,27 @@
 <template>
-    <div v-for="(item, index) in content.options" :key="index" class="d-flex mb-2">
-        <input type="number" class="form-control w-25 me-2"  v-model="item.ponderado" >
-        <input type="text" class="form-control" :placeholder="'Opción ' + (index + 1)" v-model="item.name">
+    <div v-for="(item, index) in opciones" :key="index" class="d-flex mb-2">
+        <input type="number" class="form-control w-25 me-2" v-model="item.ponderado">
+        <input type="text" class="form-control" :placeholder="'Opción ' + (index + 1)" v-model="item.detalle">
         <button type="button" class="btn btn-light ms-2" @click="removeOption(index)"
-            :disabled="(content.options.length === 1)">
+            :disabled="(opciones.length === 1)">
             <i class="bi bi-dash-square-dotted"></i>
         </button>
     </div>
 
-    <div v-if="content.optionsOthers" class="d-flex mb-2">
+    <!-- <div v-if="content.optionsOthers" class="d-flex mb-2">
         <input type="text" class="form-control" placeholder="Otros" disabled>
         <button type="button" class="btn btn-light ms-2" @click="(content.optionsOthers = !content.optionsOthers)">
             <i class="bi bi-dash-square-dotted"></i>
         </button>
     </div>
+    -->
 
     <div class="d-flex justify-content-between mb-2">
 
-        <button type="button" v-if="otros" :disabled="content.optionsOthers" class="btn btn-outline-dark"
+        <!--<button type="button" v-if="otros" :disabled="content.optionsOthers" class="btn btn-outline-dark"
             @click="(content.optionsOthers = !content.optionsOthers)">
             Agregar "Otros"
-        </button>
+        </button> -->
 
         <div></div>
 
@@ -34,7 +35,7 @@
 <script setup>
 import { computed } from 'vue';
 const props = defineProps({
-    modelValue: Object,
+    modelValue: Array,
     otros: {
         type: Boolean,
         default: true
@@ -43,17 +44,21 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue']);
 
-const content = computed({
+
+const opciones = computed({
     get: () => props.modelValue,
     set: (value) => emit('update:modelValue', value)
 }, { deep: true })
 
 const addOption = () => {
-    content.value.options.push({ name: '' });
+    opciones.value.push({
+        ponderado: 0,
+        detalle: null
+    }
+    );
 }
-
 const removeOption = (index) => {
-    content.value.options.splice(index, 1);
+    opciones.value.splice(index, 1);
 }
 
 </script>

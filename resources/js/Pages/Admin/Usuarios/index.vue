@@ -2,9 +2,25 @@
 
     <AdminLayout>
         <div class="container">
-            <HeadingPagesComponent />
 
 
+            <div class="card border-0 my-3">
+                <div class="card-header border-0 bg-primary">
+
+                </div>
+                <div class="card-body">
+                    <div class="">
+                        <span class="text-secondary fw-bold mb-1">
+                            {{ usuarios.length }} Usuarios
+                        </span>
+                        <h1 class="fs-3 mb-0">
+                            Usuarios Registrados
+                        </h1>
+                      
+
+                    </div>
+                </div>
+            </div>
             <div class="card border-0 rounded-0">
                 <table class="table table-bordered mb-0">
                     <thead>
@@ -12,6 +28,8 @@
                             <th scope="col">#</th>
                             <th scope="col">Nombres</th>
                             <th scope="col">Correo</th>
+                            <th scope="col">TyC</th>
+                            <th scope="col">Inf. General</th>
                             <th scope="col">Estado</th>
                         </tr>
                     </thead>
@@ -20,7 +38,32 @@
                             <th scope="row">{{ item.id }} </th>
                             <td> {{ item.name }} </td>
                             <td>{{ item.email }}</td>
-                            <td>{{ item.state }}</td>
+                            <td>
+
+                                <template v-if="item.tyc_state">
+                                    <span class="badge text-bg-success"> Acepto</span>
+                                </template>
+                                <template v-else>
+                                    <span class="badge text-bg-danger"> Falta</span>
+                                </template>
+                            </td>
+                            <td>
+                                <template v-if="item.info_state">
+                                    <span class="badge text-bg-success"> Completada</span>
+                                </template>
+                                <template v-else>
+                                    <span class="badge text-bg-danger"> Falta</span>
+                                </template>
+
+                            </td>
+                            <td>
+                                <template v-if="item.state">
+                                    <span class="badge text-bg-primary"> Activo</span>
+                                </template>
+                                <template v-else>
+                                    <span class="badge text-bg-danger"> Deshabilitado</span>
+                                </template>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

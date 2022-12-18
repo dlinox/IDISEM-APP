@@ -11,11 +11,20 @@
                     <label for="i-password" class="form-label">Nueva Contraseña</label>
                     <input v-model="form.password" type="password" class="form-control" autocomplete="on">
                 </div>
-                
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button v-if="cancel" class="btn btn-text text-danger order-2 order-md-1" type="button"> Cancelar</button>
 
-                    <button class="btn btn-primary order-1 order-md-2" type="submit"> Guardar</button>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button v-if="cancel" class="btn btn-text text-danger order-2 order-md-1" type="button">
+                        Cancelar</button>
+
+                    <button class="btn btn-primary order-1 order-md-2" type="submit" :disabled="form.processing">
+
+                        <template v-if="form.processing">
+                            <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                        </template>
+                        <template v-else>
+                            <i class="bi bi-box-arrow-in-right me-2"></i>
+                        </template>
+                        Guardar</button>
                 </div>
             </form>
 
@@ -39,7 +48,7 @@ const form = useForm({
 
 const dialog = ref(true);
 
-const submit = () =>{
+const submit = () => {
 
     form.post('/user/auth/changer-password')
     console.log('asds');

@@ -49,7 +49,6 @@
                         <input class="form-control" type="file" @input="item.img = $event.target.files[0]" />
                     </div>
                 </div>
-
             </div>
 
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -72,7 +71,7 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['update:modelValue']);
-const dialog = ref(true);
+const dialog = ref(false);
 
 const calificaciones = computed({
     get: () => props.modelValue,

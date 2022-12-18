@@ -1,44 +1,12 @@
 <template>
     <form @submit.prevent="submit">
         <div class="row">
-            <div class="col-12 mb-3">
-                <label for="fecha" class="form-label fw-bold">Fecha de nacimiento</label>
-                <div class="row">
-                    <div class="col">
-                        <input v-model="form.fecha.dia" type="number" class="form-control" id="fecha" placeholder="día"
-                            min="1" max="31" required>
-                    </div>
-                    <div class="col">
-                        <select v-model="form.fecha.mes" class="form-select" aria-label="Default select example" required>
-                            <option selected disabled>Mes</option>
-                            <option v-for="(item, index) in meses" :key="index" :value="item.id">{{ item.nombre }}
-                            </option>
-                        </select>
-                    </div>
-                    <div class="col"><input v-model="form.fecha.anio" type="number" class="form-control"
-                            placeholder="año" max="2015" required></div>
-                </div>
-            </div>
             <div class="col-12 col-md-6 mb-3">
-                <label for="sexo" class="form-label fw-bold">Sexo: </label>
-
-                <div class="form-check mb-2">
-                    <input required v-model="form.sexo" class="form-check-input" type="radio" id="hombre" value="Hombre"
-                        name="sexo">
-                    <label class="form-check-label" for="hombre">
-                        Hombre
-                    </label>
-                </div>
-                <div class="form-check mb-2">
-                    <input required v-model="form.sexo" class="form-check-input" type="radio" id="mujer" value="Mujer"
-                        name="sexo">
-                    <label class="form-check-label" for="mujer">
-                        Mujer
-                    </label>
-                </div>
-
-
+                <label for="fecha" class="form-label fw-bold">Fecha de nacimiento</label>
+                <input v-model="form.nacimiento" type="date" class="form-control" id="fecha" placeholder="día" min="1"
+                    max="31" required>
             </div>
+
             <div class="col-12 col-md-6 mb-3">
                 <div class="dropdown">
                     <label for="fecha" class="form-label fw-bold">Lugar de procedencia</label>
@@ -69,8 +37,30 @@
                 </div>
             </div>
             <div class="col-12 col-md-6 mb-3">
+                <label for="sexo" class="form-label fw-bold">Sexo: </label>
+
+                <div class="form-check mb-2">
+                    <input required v-model="form.sexo" class="form-check-input" type="radio" id="hombre" value="Hombre"
+                        name="sexo">
+                    <label class="form-check-label" for="hombre">
+                        Hombre
+                    </label>
+                </div>
+                <div class="form-check mb-2">
+                    <input required v-model="form.sexo" class="form-check-input" type="radio" id="mujer" value="Mujer"
+                        name="sexo">
+                    <label class="form-check-label" for="mujer">
+                        Mujer
+                    </label>
+                </div>
+
+
+            </div>
+
+            <div class="col-12 col-md-6 mb-3">
                 <label for="lengua" class="form-label fw-bold">Lengua materna</label>
-                <select v-model="form.lengua_mat" class="form-select" aria-label="Default select example" id="lengua" required>
+                <select v-model="form.lengua_mat" class="form-select" aria-label="Default select example" id="lengua"
+                    required>
                     <option selected disabled>Selecione una</option>
                     <option v-for="(item, index) in lenguas" :key="index" :value="item">{{ item }}
                     </option>
@@ -82,7 +72,7 @@
                     <label for="unap" class="form-label  fw-bold">Escuela Profecional</label>
                     <input v-model="escuelaSearch" type="text" class="form-control" placeholder="Escuela Profecional"
                         id="unap" data-bs-toggle="dropdown" aria-expanded="false" required>
-                    <ul class="dropdown-menu autocomplete-menu w-100" aria-labelledby="peru"> 
+                    <ul class="dropdown-menu autocomplete-menu w-100" aria-labelledby="peru">
 
                         <template v-if="escuelaSearch.length < 3">
                             <li>
@@ -109,7 +99,8 @@
             </div>
             <div class="col-12 col-md-6 mb-3">
                 <label for="semestre" class="form-label fw-bold">Semestre Academico</label>
-                <select v-model="form.semestre" class="form-select" aria-label="Default select example" id="semestre" required>
+                <select v-model="form.semestre" class="form-select" aria-label="Default select example" id="semestre"
+                    required>
                     <option selected disabled>Semestre</option>
                     <option v-for="item in 12" :key="item" :value="item">
                         <span class="me-3">{{ item }}° </span> Semestre
@@ -252,7 +243,12 @@
 
             <div class="col-12 d-flex justify-content-end">
                 <button class="btn btn-primary" :disabled="form.processing">
-                    <i class="bi bi-save me-2"></i>
+                    <template v-if="form.processing">
+                        <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                    </template>
+                    <template v-else>
+                        <i class="bi bi-save me-2"></i>
+                    </template>
                     Guardar
                 </button>
             </div>
@@ -263,18 +259,14 @@
 
 <script setup>
 import { useForm } from '@inertiajs/inertia-vue3';
-import meses from '@/assets/json/meses.json';
 import peru from '@/assets/json/peru.json';
 import unap from '@/assets/json/unap.json'
 import { ref, watch } from 'vue';
 
 const form = useForm({
-    fecha: {
-        dia: null,
-        mes: null,
-        anio: null,
-    },
-    sexo:null,
+
+    nacimiento: null,
+    sexo: null,
     lengua_mat: null,
     semestre: null,
     vivienda: null,

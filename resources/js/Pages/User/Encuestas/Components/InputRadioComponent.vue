@@ -5,7 +5,7 @@
 
             <div class="form-check mt-2" v-for="(item, index) in pregunta.opciones" :key="index">
                 <input :name="'radio-' + pregunta.id" class="form-check-input" type="radio"
-                    :id="'opcion-r-' + pregunta.id + '-' + index" v-model="respuesta" :value="item">
+                    :id="'opcion-r-' + pregunta.id + '-' + index" v-model="respuesta" :value="item" required>
                 <label class="form-check-label" :for="'opcion-r-' + pregunta.id + '-' + index">
                     {{ item.detalle }}
                 </label>

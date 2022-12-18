@@ -66,7 +66,12 @@ class RegisterController extends Controller
         ]);
 
 
-        return Redirect::route('user.auth.register')->with('message', 'User created.');
+        return Redirect::route('user.auth.register')->with(
+            [
+                'message' => 'Registro exitoso.',
+                'status' => true
+            ]
+        );
     }
 
     public function validarCode(Request $request)
@@ -83,7 +88,7 @@ class RegisterController extends Controller
             'correo' => substr_replace($estudiante->est_correo, '***', 2, 4),
         ];
 
-        return back()->with(['data' => $data, 'message' => 'Estudiante encontrado']);
+        return back()->with(['data' => $data, 'message' => 'Estudiante encontrado', 'status' => true]);
     }
 
     public function sendEmail(Request $request)
@@ -110,13 +115,13 @@ class RegisterController extends Controller
                     Mail::to($estudiante->est_correo)->send(new CrearCuentaMail($user));
                 });
             } catch (\Throwable $th) {
-                return Redirect::route('user.auth.register')->with(['message' => 'Ocurrio un error, vuelva a intentarlo']);
+                return Redirect::route('user.auth.register')->with(['message' => 'Ocurrio un error, vuelva a intentarlo', 'status' => false]);
             }
         } else {
-            return Redirect::route('user.auth.register')->with(['message' => 'El usuario ya se encuentra registrado']);
+            return Redirect::route('user.auth.register')->with(['message' => 'El usuario ya se encuentra registrado', 'status' => false]);
         }
 
-        return Redirect::route('user.auth.login')->with(['message' => 'Usuario creado, Correo Enviado']);
+        return Redirect::route('user.auth.login')->with(['message' => 'Usuario creado, Correo Enviado', 'status' => true]);
     }
 
     public function changerPassword(Request $request)
@@ -128,7 +133,12 @@ class RegisterController extends Controller
         $user->password_state =  1;
         $user->save();
 
-        return Redirect::route('user.index')->with('message', 'Contraseña cambiada con exito.');
+        return Redirect::route('user.index')->with(
+            [
+                'message' => 'Contraseña cambiada con exito.',
+                'status' => true
+            ]
+        );
     }
 
     public function agreeTerms()
@@ -137,7 +147,7 @@ class RegisterController extends Controller
         $user->tyc_date =  date('Y-m-d H:i:s');
         $user->tyc_state =  1;
         $user->save();
-        return Redirect::route('user.index')->with('message', 'Terminos y condiciones aceptados.');
+        return Redirect::route('user.index');
     }
     //
 }

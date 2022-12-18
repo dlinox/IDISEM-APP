@@ -1,6 +1,5 @@
 <template>
 
-
     <ul class="menu">
         <span class="menu-heading">Menu</span>
 
@@ -40,7 +39,6 @@
 <script setup>
 import { Link } from '@inertiajs/inertia-vue3';
 
-
 const listMenu = [
     {
         name: 'Dashboard',
@@ -63,7 +61,28 @@ const listMenu = [
             }
         ]
     },
+   
+    {
+        name: 'Administradores',
+        route: '/admin/administradores',
+        icon: 'bi bi-layout-wtf',
+        childrens: false,
+    },
+    {
+        name: 'Usuarios',
+        route: '/admin/usuarios',
+        icon: 'bi bi-layout-wtf',
+        childrens: false,
+    },
+    {
+        name: 'Estudiantes',
+        route: '/admin/estudiantes',
+        icon: 'bi bi-layout-wtf',
+        childrens: false,
+    },
 ];
+
+
 
 </script>
 <style scoped lang="scss">
@@ -121,9 +140,9 @@ $bg-item-menu: #F2CB05;
         a {
             text-decoration: none;
             padding: .8rem 1rem .8rem 2rem;
-           
-          
-            i{
+
+
+            i {
                 color: rgba($color: $bg-item-menu, $alpha: .8);
             }
 

@@ -24,9 +24,6 @@
                 <div class="row">
                     <div v-for="(item, index) in encuestas" :key="index" class="col-12 col-md-6 mb-4">
                         <CardEncuestaComponent :item="item" />
-                        <pre>
-                            {{ encuestas }}
-                        </pre>
                     </div>
                 </div>
             </div>

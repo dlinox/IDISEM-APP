@@ -5,28 +5,29 @@
         <template v-if="respuestas">
 
             <div class="container">
-                <div class="card border-0 my-5 mb-3" >
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img :src="'/uploads/' + calificaciones.cal_img_url" class="img-fluid rounded-start" alt="...">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h3 class="card-title">
-                                {{ calificaciones.cal_detalle }}
-                            </h3>
-                            <p class="card-text">
-                                {{ calificaciones.cal_mensaje }}
-                            </p>
-                   
+                <div class="card border-0 my-5 mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img :src="'/uploads/' + calificaciones.cal_img_url" class="img-fluid rounded-start"
+                                alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h3 class="card-title">
+                                    {{ calificaciones.cal_detalle }}
+                                </h3>
+                                <p class="card-text">
+                                    {{ calificaciones.cal_mensaje }}
+                                </p>
+
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
- 
-            </div>
-        
- 
+
+
         </template>
         <template v-else>
             <div class="container my-3">
@@ -63,7 +64,15 @@
                         </div>
 
                         <div class="col-12 d-flex justify-content-end">
-                            <button class="btn btn-primary" type="submit"> <i class="bi bi-send me-2"></i> Enviar
+                            <button class="btn btn-primary" :disabled="form.processing" type="submit">
+                                <template v-if="form.processing">
+                                    <span class="spinner-border spinner-border-sm me-2" role="status"
+                                        aria-hidden="true"></span>
+                                </template>
+                                <template v-else>
+                                    <i class="bi bi-send me-2"></i>
+                                </template>
+                                Enviar
                             </button>
                         </div>
                     </div>

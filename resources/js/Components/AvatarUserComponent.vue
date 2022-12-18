@@ -2,15 +2,20 @@
     <div class="wrap-avatar-user">
 
         <div class="avatar-img">
-            DP
+            A
         </div>
         <div class="user-details">
-            <span class="user-name">Denis Puma</span>
+            <span class="user-name">{{user.name}}</span>
             <span class="user-rol">Administrador</span>
         </div>
     </div>
 </template>
 <script setup>
+
+const props = defineProps({
+    user: Object
+});
+
 </script>
 <style lang="scss" scoped>
 .wrap-avatar-user {

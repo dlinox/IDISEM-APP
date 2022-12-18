@@ -3,8 +3,6 @@
     <AdminLayout>
         <div class="container">
 
-            <HeadingPagesComponent />
-
             <div class="card border-0 my-3">
                 <div class="card-header border-0 bg-primary">
 
@@ -12,7 +10,7 @@
                 <div class="card-body">
                     <div class="">
                         <span class="text-secondary fw-bold mb-1">
-                            20 Respuestas
+                            {{encuestas.length}} Encuesta(s)
                         </span>
                         <h1 class="fs-3 mb-0">
                             Encuestas publicadas

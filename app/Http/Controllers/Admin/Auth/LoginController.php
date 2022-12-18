@@ -31,15 +31,19 @@ class LoginController extends Controller
         ]);
 
         if (Auth::guard('admin')->attempt($request->only(['email', 'password']), $request->get('remember'))) {
-            
-            return Redirect::route('admin.index')->with('success', 'Encuesta created.');
+
+            return Redirect::route('admin.index')->with(
+                [
+                    'message' => 'Ingresando',
+                    'status' => true
+                ]
+            );
         }
 
         return back()->with([
-            'message' => 'Credenciales incorrectas.',  
+            'message' => 'Credenciales incorrectas.',
+            'status' => false
         ]);
-
-       
     }
 
     public function logout(Request $request)

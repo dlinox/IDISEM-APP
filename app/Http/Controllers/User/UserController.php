@@ -48,7 +48,7 @@ class UserController extends Controller
         //2022-12-13
         $res = InfoAdicional::create([
 
-            'ifa_fecha_nac' => $request->fecha['anio'] . '-' . $request->fecha['mes'] . '-' . $request->fecha['dia'],
+            'ifa_fecha_nac' => $request->nacimiento,
             'ifa_sexo' => $request->sexo,
             'ifa_procedencia' => $request->procedencia,
             'ifa_lengua_mat' => $request->lengua_mat,

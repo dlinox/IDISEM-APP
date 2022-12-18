@@ -79,24 +79,24 @@ class EncuestaController extends Controller
     private function createPregunta($data, $seccion)
     { //REQUEST ENCUESTA --> Pasar al modelo Pregunta
 
-        $opcion = $data['type']['input'] === 'TEXT' ||  $data['type']['input'] === 'TEXTAREA'
+        $opcion = $data['tipo'] === 'TEXT' ||  $data['tipo'] === 'TEXTAREA'
             ? 'NO'
-            : ($data['type']['input'] === 'RADIO' ||  $data['type']['input'] === 'SELECT'
+            : ($data['tipo'] === 'RADIO' ||  $data['tipo'] === 'SELECT'
                 ? 'UNICA'
                 : 'MULTIPLE');
 
         return Pregunta::create([
-            'pre_titulo' => $data['title'],
-            'pre_tipo' => $data['type']['input'],
+            'pre_titulo' => $data['titulo'],
+            'pre_tipo' => $data['tipo'],
             'pre_opcion' => $opcion,
             'pre_sec_id' => $seccion->sec_id
         ]);
     }
 
     private function createOpcion($data, $pregunta)
-    { //REQUEST ENCUESTA --> Pasar al modelo Pregunta
+    { //REQUEST ENCUESTA --> Pasar al modelo Opcion
         return Opcion::create([
-            'opc_detalle' => $data['name'],
+            'opc_detalle' => $data['detalle'],
             'opc_ponderado' =>  $data['ponderado'],
             'opc_pre_id' => $pregunta->pre_id
         ]);
@@ -107,12 +107,12 @@ class EncuestaController extends Controller
         DB::transaction(function () use ($request) {
             $encuesta = $this->createEncuesta($request);
             $this->createCalificaciones($request['calificaciones'], $encuesta);
-            foreach ($request->sections as $value) {
+            foreach ($request->secciones as $value) {
                 $seccion = $this->createSeccion($value, $encuesta);
-                foreach ($value['questions'] as $item) {
+                foreach ($value['preguntas'] as $item) {
                     $pregunta = $this->createPregunta($item, $seccion);
                     if ($pregunta->pre_opcion != 'NO') {
-                        foreach ($item['content']['structure']['options'] as $element) {
+                        foreach ($item['opciones'] as $element) {
                             $this->createOpcion($element, $pregunta);
                         }
                     }
@@ -124,10 +124,7 @@ class EncuestaController extends Controller
 
     public function show($id)
     {
-
         $encuesta = Encuesta::find($id);
-
-
         $preguntas = Pregunta::select('pre_id', 'pre_titulo', 'pre_tipo', 'pre_opcion')
             ->join('seccions', 'sec_id', 'pre_sec_id')
             ->where('sec_enc_id', $id)
@@ -160,26 +157,52 @@ class EncuestaController extends Controller
     public function edit($id)
     {
         $encuesta = Encuesta::find($id);
-        $preguntas = Pregunta::where('pre_enc_id', $id)->get()->map(function ($pregunta) {
-            return [
-                'id' => $pregunta->pre_id,
-                'title' => $pregunta->pre_tiutlo,
-                'type' => [
-                    "name" => "sesese",
-                    "icon" => "bi bi-filter-left",
-                    "code" => $pregunta->pre_tipo
-                ],
-                'content' => json_decode($pregunta->pre_estructura),
-                'estado' => $pregunta->pre_estado,
-                'enc_id' => $pregunta->pre_enc_id,
-            ];
-        });
+
+        $seciones = Seccion::where('sec_enc_id', $id)
+            ->get()->map(function ($seccion) {
+                return [
+                    'id' => $seccion->sec_id,
+                    'titulo' => $seccion->sec_titulo,
+                    'preguntas' => Pregunta::where('pre_sec_id', $seccion->sec_id)
+                        ->get()
+                        ->map(function ($pregunta) {
+                            return [
+                                'id' => $pregunta->pre_id,
+                                'titulo' => $pregunta->pre_titulo,
+                                'tipo' => $pregunta->pre_tipo,
+                                'opcion' => $pregunta->pre_opcion,
+                                'opciones' => Opcion::where('opc_pre_id', $pregunta->pre_id)
+                                    ->get()->map(function ($opcion) {
+                                        return [
+                                            'id' => $opcion->opc_id,
+                                            'detalle' => $opcion->opc_detalle,
+                                            'ponderado' => $opcion->opc_ponderado
+                                        ];
+                                    })
+                            ];
+                        })
+                ];
+            });
+
+        $calificaciones = Calificacion::where('cal_enc_id', $id)
+            ->get()->map(function ($calificacion) {
+                return [
+                    'id' => $calificacion->cal_id,
+                    'detalle' => $calificacion->cal_detalle,
+                    'mensaje' => $calificacion->cal_mensaje,
+                    'img' => $calificacion->cal_img,
+                    'min' => $calificacion->cal_min,
+                    'max' => $calificacion->cal_max
+                ];
+            });
 
         return Inertia::render(
             'Admin/Encuestas/Editar',
             [
                 'encuesta' => $encuesta,
-                'preguntas' => $preguntas
+                'seciones' => $seciones,
+                'calificaciones' => $calificaciones
+
             ]
         );
     }

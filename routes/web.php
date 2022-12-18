@@ -1,11 +1,15 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdministradoresController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\RegisterController;
 use App\Http\Controllers\Admin\CalificacionesController;
 use App\Http\Controllers\Admin\EncuestaController;
+use App\Http\Controllers\Admin\EstudiantesController;
 use App\Http\Controllers\Admin\PreguntaController;
+use App\Http\Controllers\Admin\ReportesController;
+use App\Http\Controllers\Admin\RespuestasController;
 use App\Http\Controllers\Admin\UsuariosController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,10 +44,18 @@ Route::name('admin.')->prefix('admin')->group(function () {
         Route::get('', 'index')->name('index');
     });
 
+    Route::middleware('auth:admin')->controller(ReportesController::class)->name('reportes.')->prefix('reportes')->group(function () {
+        Route::get('excel-encuesta/{id}', 'downloadExcelEncuesta')->name('excel-encuesta'); //downloadExcelEncuesta
+    });
+
     Route::resource('encuestas', EncuestaController::class)->middleware('auth:admin');
     Route::resource('calificaciones', CalificacionesController::class)->middleware('auth:admin');
+    Route::resource('respuestas', RespuestasController::class)->middleware('auth:admin')->only('show');
     Route::resource('preguntas', PreguntaController::class)->middleware('auth:admin');
     Route::resource('usuarios', UsuariosController::class)->middleware('auth:admin');
+    Route::resource('administradores', AdministradoresController::class)->middleware('auth:admin');
+    Route::resource('estudiantes', EstudiantesController::class)->middleware('auth:admin');
+
 
     Route::middleware([])->name('auth.')->prefix('auth')->group(function () {
         Route::controller(LoginController::class)->group(function () {

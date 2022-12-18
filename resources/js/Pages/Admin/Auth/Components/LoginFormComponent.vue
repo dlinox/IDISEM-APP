@@ -11,8 +11,14 @@
         </div>
 
         <div class="mb-3  d-grid gap-2 d-md-flex justify-content-md-end">
-            <button class="btn btn-primary" type="submit">
-                <i class="bi bi-box-arrow-in-right me-2"></i>
+            <button class="btn btn-primary" :disabled="form.processing" type="submit">
+
+                <template v-if="form.processing">
+                    <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                </template>
+                <template v-else>
+                    <i class="bi bi-box-arrow-in-right me-2"></i>
+                </template>
                 Ingresar</button>
         </div>
     </form>

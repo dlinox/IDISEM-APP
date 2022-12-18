@@ -27,8 +27,11 @@
             </p>
 
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button class="btn btn-text text-danger order-2 order-md-1" type="button">
-                    No acepto</button>
+
+                <Link  class="btn btn-text text-danger order-2 order-md-1" href="/user/auth/logout" method="delete"
+                    as="button">
+                No acepto
+                </Link>
 
                 <button class="btn btn-primary order-1 order-md-2" type="button" @click="iagree"> Sí acepto </button>
             </div>
@@ -43,6 +46,7 @@ import ModalComponent from '@/Components/ModalComponent.vue';
 import Logo from '@/assets/images/logo.png'
 import { ref } from 'vue';
 import { Inertia } from '@inertiajs/inertia';
+import { Link } from '@inertiajs/inertia-vue3';
 const props = defineProps({
     cancel: {
         type: Boolean,

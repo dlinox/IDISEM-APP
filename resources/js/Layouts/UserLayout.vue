@@ -7,7 +7,7 @@
                 <div class="w-100 h-100 d-flex justify-content-between align-items-center px-3">
 
                     <Link href="/user" class="logo">
-                        <img :src="Logo" alt="">
+                    <img :src="Logo" alt="">
                     </Link>
 
                     <div>
@@ -17,10 +17,14 @@
                                 <i class="bi bi-person"></i>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#"> <i class="bi bi-person-bounding-box me-2"></i>
-                                        Perfil</a></li>
-                                <li><a class="dropdown-item" href="#"> <i class="bi bi-gear me-2"></i>
-                                        Configuraciones</a></li>
+                                <li>
+                                    <a class="dropdown-item disabled" href="#">
+                                        <i class="bi bi-person-bounding-box me-2"></i>
+                                        Perfil
+                                    </a>
+                                </li>
+                                <!-- <li><a class="dropdown-item" href="#"> <i class="bi bi-gear me-2"></i>
+                                        Configuraciones</a></li>-->
                                 <li>
 
                                     <Link class="dropdown-item text-danger" href="/user/auth/logout" method="delete"
@@ -100,7 +104,7 @@ initialize();
 
         .nav-app {
             width: 100%;
-            height: 3.5rem;
+            height: 4rem;
             background-color: #fafafa;
             position: absolute;
             top: 0;
@@ -110,10 +114,11 @@ initialize();
             .logo {
                 display: flex;
                 width: 5rem;
-             
                 border-radius: .4rem;
                 overflow: hidden;
-                img{
+                padding: .1rem;
+
+                img {
                     width: 100%;
                 }
 

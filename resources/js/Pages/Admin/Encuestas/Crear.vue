@@ -3,7 +3,7 @@
     <AdminLayout>
         <div class="container">
 
-            <HeadingPagesComponent />
+
             <div class="my-3">
                 <h1 class="fs-4 mb-0">
                     Crear Nueva Encuesta
@@ -20,27 +20,35 @@
 
                             <CalificacionEncuestaComponent v-model="form.calificaciones" />
 
-                            <button type="submit" class="btn btn-primary ms-3">
-                                <i class="bi bi-save me-2"></i> Guardar
+                            <button type="submit" class="btn btn-primary ms-3" :disabled="form.processing">
+                                <template v-if="form.processing">
+                                    <span class="spinner-border spinner-border-sm me-2" role="status"
+                                        aria-hidden="true"></span>
+                                </template>
+                                <template v-else>
+                                    <i class="bi bi-save me-2"></i>
+                                </template>
+                                Guardar
                             </button>
                         </div>
 
                         <div class="d-flex mt-3 mb-2">
                             <input v-model="form.titulo" type="text" class="form-control"
-                                placeholder="Titulo de la encuesta">
+                                placeholder="Titulo de la encuesta" required>
 
 
                         </div>
 
                         <div class="d-flex my-3">
                             <textarea v-model="form.descripcion" class="form-control" rows="2"
-                                placeholder="Descripcin de la encuesta"></textarea>
+                                placeholder="Descripcin de la encuesta" required></textarea>
                         </div>
 
                     </div>
 
                     <div class="accordion" id="accordionSection">
-                        <div v-for="(item, i) in form.sections" :key="i" class="accordion-item border-0 bg-transparent">
+                        <div v-for="(item, i) in form.secciones" :key="i"
+                            class="accordion-item border-0 bg-transparent">
                             <div class="accordion-header" :id="'accordionSection-h' + i">
                                 <div class="accordion-button rounded-0">
                                     <input v-model="item.titulo" type="text" class="form-control me-2"
@@ -56,21 +64,20 @@
                                 :aria-labelledby="'accordionSection-' + i">
                                 <div class="accordion-body px-2 border border-light">
 
-                                    <VueDraggableNext :list="item.questions">
-                                        <div v-for="(item, j) in item.questions" :key="j"
+                                    <VueDraggableNext :list="item.preguntas">
+                                        <div v-for="(item, j) in item.preguntas" :key="j"
                                             class="card shadow border-0 mb-3">
                                             <div class="card-header border-0">
                                                 <div class="d-flex mt-3 mb-2">
-                                                    <input v-model="item.title" type="text" class="form-control"
-                                                        :placeholder="'Pregunta ' + (j + 1)"
-                                                        :disabled="!item.type.code">
+                                                    <input v-model="item.titulo" type="text" class="form-control"
+                                                        :placeholder="'Pregunta ' + (j + 1)" :disabled="!item.tipo">
 
-                                                    <DropDownTypeComponent v-model="item.type" />
+                                                    <DropDownTypeComponent v-model="item.tipo" />
                                                 </div>
                                             </div>
                                             <div class="card-body">
-                                                <TypeContentComponent :selected-type="item.type.code"
-                                                    v-model="item.content" />
+                                                <TypeContentComponent :selected-type="item.tipo"
+                                                    v-model="item.opciones" />
                                             </div>
                                             <div class="card-footer border-0">
                                                 <div class="d-flex justify-content-end">
@@ -126,6 +133,7 @@ const form = useForm({
     descripcion: '',
     calificaciones: [
         {
+            id: null,
             detalle: null,
             mensaje: null,
             img: null,
@@ -133,15 +141,23 @@ const form = useForm({
             max: null
         }
     ],
-    sections: [
+    secciones: [
         {
+            id: null,
             titulo: '',
-
-            questions: [
+            preguntas: [
                 {
-                    title: '',
-                    type: {},
-                    content: {}
+                    id: null,
+                    titulo: '',
+                    tipo: '',
+                    opcion: '',
+                    opciones: [
+                        {
+                            id: null,
+                            detalle: null,
+                            ponderado: null,
+                        },
+                    ]
                 },
             ],
         }
@@ -154,40 +170,55 @@ const submit = (e) => {
     form.post('/admin/encuestas')
 }
 
-const section = {
+const seccion = {
+    id: null,
     titulo: '',
-    questions: [
+    preguntas: [
         {
-            title: '',
-            type: {},
-            content: {}
+            titulo: '',
+            tipo: '',
+            opcion: '',
+            opciones: [
+                {
+                    id: null,
+                    detalle: null,
+                    ponderado: 0,
+                },
+            ]
         },
     ],
 };
 
-const question = {
-    title: '',
-    type: {},
-    content: {}
+const pregunta = {
+    titulo: '',
+    tipo: '',
+    opcion: '',
+    opciones: [
+        {
+            id: null,
+            detalle: null,
+            ponderado: null,
+        },
+    ]
 }
 
 const addSection = () => {
-    let aux = JSON.parse(JSON.stringify(section));
-    form.sections.push({ ...aux })
+    let aux = JSON.parse(JSON.stringify(seccion));
+    form.secciones.push({ ...aux })
 }
 
 const addQuestion = (i) => {
-    let aux = JSON.parse(JSON.stringify(question));
-    form.sections[i].questions.push({ ...aux })
+    let aux = JSON.parse(JSON.stringify(pregunta));
+    form.secciones[i].preguntas.push({ ...aux })
 }
 
 const dublicateQuestion = (item, i) => {
     let aux = JSON.parse(JSON.stringify(item));
-    form.sections[i].questions.push({ ...aux });
+    form.secciones[i].preguntas.push({ ...aux });
 }
 
 const reomoveQuestion = (index, i) => {
-    form.sections[i].questions.splice(index, 1);
+    form.secciones[i].preguntas.splice(index, 1);
 }
 
 </script>

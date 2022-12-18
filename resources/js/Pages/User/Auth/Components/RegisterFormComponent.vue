@@ -11,7 +11,13 @@
 
         <div class="mb-3  d-grid gap-2 d-md-flex justify-content-center">
             <button class="btn btn-primary" type="submit" :disabled="form.processing">
-                <i class="bi bi-box-arrow-in-right me-2"></i> Buscar
+                <template v-if="form.processing">
+                    <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                </template>
+                <template v-else>
+                    <i class="bi bi-search me-2"></i>
+                </template>
+                Buscar
             </button>
         </div>
     </form>
@@ -34,7 +40,15 @@
             <hr>
             <div class="d-flex justify-content-between">
                 <button class="btn btn-text text-danger" @click="dialog = !dialog">No soy yo</button>
-                <button class="btn btn-primary" @click="sentEmail">Enviar correo</button>
+                <button class="btn btn-primary" @click="sentEmail" :disabled="form.processing">
+                    <template v-if="form.processing">
+                        <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                    </template>
+                    <template v-else>
+                        <i class="bi bi-envelope-check me-2"></i>
+                    </template>
+                    Enviar correo
+                </button>
             </div>
         </template>
     </ModalComponent>

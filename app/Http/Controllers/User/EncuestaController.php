@@ -18,7 +18,28 @@ class EncuestaController extends Controller
 
     public function index()
     {
-        $encuestas = Encuesta::all();
+
+        $encuestas =
+            Encuesta::select(
+                'enc_id',
+                'enc_titulo',
+                'enc_descripcion',
+                'created_at'
+            )
+            ->get()
+            ->map(function ($item) {
+                return [
+                    'id' => $item->enc_id,
+                    'titulo' => $item->enc_titulo,
+                    'descripcion' => $item->enc_descripcion,
+                    'fecha' => $item->created_at->diffForHumans(),
+                    'num_preguntas' => Pregunta::join('seccions', 'pre_sec_id', '=', 'sec_id')
+                        ->where('sec_enc_id', $item->enc_id)
+                        ->count(),
+                    //'fehca' => $ str_replace("ll", "", "good golly miss molly!", $count);
+                ];
+            });
+
 
         return Inertia::render('User/Encuestas/index', [
             'encuestas' => $encuestas

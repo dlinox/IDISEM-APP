@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserLoginRequest;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,18 +23,14 @@ class LoginController extends Controller
         return Inertia::render('User/Auth/Login');
     }
 
-    public function login(Request $request)
+    public function login(UserLoginRequest $request)
     {
-        $this->validate($request, [
-            'email'   => 'required|email',
-            'password' => 'required|min:6'
-        ]);
 
         if (Auth::attempt($request->only(['email', 'password']), $request->get('remember'))) {
             return redirect()->intended('/user');
         }
 
-        return back()->withInput($request->only('email'));
+        return back()->with(['status' => false, 'message' => 'Credenciales incorrectas'])->withInput($request->only('email'));
     }
 
     public function logout(Request $request)
@@ -46,5 +43,4 @@ class LoginController extends Controller
 
         return redirect('/user/auth/login');
     }
-
 }

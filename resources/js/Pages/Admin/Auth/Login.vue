@@ -2,9 +2,7 @@
     <AuthLayout>
         <div class="card card-auth mx-auto">
             <div class="card-header">
-                <img class="logo-img" :src="image" alt="Logo app">
-                <h1>Encuestas App</h1>
-                <span>Regístrese para continuar.</span>
+                <img class="logo-img" :src="Logo" alt="Logo IDISEM APP">
             </div>
             <div class="card-body">
                 <nav>
@@ -24,7 +22,7 @@
                 </div>
             </div>
             <div class="card-footer">
-                AppEncuestas © 2022
+                IDISEM © 2022
             </div>
         </div>
 
@@ -32,7 +30,7 @@
 
 </template>
 <script setup>
-import image from "@/assets/images/logo.jpg"
+import Logo from "@/assets/images/logo.png"
 import AuthLayout from '@/Layouts/AuthLayout.vue';
 import LoginFormComponent from "./Components/LoginFormComponent.vue";
 </script>
@@ -50,29 +48,16 @@ $color-primario: #0E2940;
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
-        background-color: $color-primario;
+        //background-color: $color-primario;
         padding: 1.2rem;
         border-radius: 0;
         border: none;
 
         .logo-img {
-            width: 2.5rem;
+            height: 6rem;
             border-radius: 10px;
         }
 
-        h1 {
-            width: 100%;
-            text-align: center;
-            font-size: 1.5em;
-            margin-bottom: 0rem;
-            padding: 1rem 0rem 0rem;
-            color: #f1f1f1;
-        }
-
-        span {
-            font-size: 1em;
-            color: #a1a1a1;
-        }
     }
 
     .card-body {

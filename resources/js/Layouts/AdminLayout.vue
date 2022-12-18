@@ -1,15 +1,7 @@
 <template>
     <div class="wrap-app" :class="positionDrawer ? 'phones' : ''">
-
-
-
-
         <div class="drawer-app" :class="[drawer ? 'show' : 'hide', positionDrawer ? 'hide' : '']">
-
-
-
             <div class="drawer-header px-3 ">
-
                 <button v-if="positionDrawer" class="btn btn-dark drawer-btn-close me-3" @click="drawer = !drawer">
                     <i v-if="drawer" class="bi bi-window"></i>
                 </button>
@@ -20,7 +12,7 @@
             </div>
 
             <div class="drawer-body">
-                <AvatarUserComponent />
+                <AvatarUserComponent :user="user" />
                 <MainMenuComponent />
 
             </div>
@@ -48,10 +40,10 @@
                                 <i class="bi bi-person"></i>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#"> <i class="bi bi-person-bounding-box me-2"></i>
+                                <!-- <li><a class="dropdown-item disabled" href="#"> <i class="bi bi-person-bounding-box me-2"></i>
                                         Perfil</a></li>
-                                <li><a class="dropdown-item" href="#"> <i class="bi bi-gear me-2"></i>
-                                        Configuraciones</a></li>
+                                <li><a class="dropdown-item disabled" href="#"> <i class="bi bi-gear me-2"></i>
+                                        Configuraciones</a></li>-->
                                 <li>
 
                                     <Link class="dropdown-item text-danger" href="/admin/auth/logout" method="delete"
@@ -65,23 +57,19 @@
                         </div>
                     </div>
                 </div>
-
             </nav>
             <main class="main-app">
                 <slot></slot>
             </main>
-
         </div>
-
     </div>
-
 </template>
 <script setup>
 import { ref, computed } from 'vue';
 import Logo from '../assets/images/logo.png'
 import MainMenuComponent from '@/Components/MainMenuComponent.vue'
 import AvatarUserComponent from '@/Components/AvatarUserComponent.vue';
-import { Link } from '@inertiajs/inertia-vue3';
+import { Link, usePage } from '@inertiajs/inertia-vue3';
 
 const positionDrawer = computed(() => {
     if (widthScreen.value < 768) {
@@ -96,18 +84,22 @@ const positionDrawer = computed(() => {
 });
 
 const drawer = ref(true);
-
 const widthScreen = ref(0);
-
 const handleResize = () => {
     widthScreen.value = window.innerWidth;
 }
+
+const user = computed(() => usePage().props.value.auth.user)
+
+
+
+const alerta = computed(() => usePage().props.value)
+
 
 const initialize = () => {
     window.addEventListener('resize', handleResize);
     handleResize();
 }
-
 initialize();
 
 </script>
@@ -155,12 +147,13 @@ $color-primario: #0A254C;
             .logo-app {
                 display: flex;
                 align-items: center;
-                justify-content: center ;
+                justify-content: center;
                 height: 100%;
                 width: 100%;
                 display: flex;
                 padding: 1rem;
-                img{
+
+                img {
                     height: 100%;
                 }
             }

@@ -8,6 +8,7 @@
         "@inertiajs/inertia": "^0.11.1",
         "@inertiajs/inertia-vue3": "^0.6.0",
         "@inertiajs/progress": "^0.2.7",
+        "@kyvg/vue3-notification": "^2.7.0",
         "@popperjs/core": "^2.10.2",
         "@vitejs/plugin-vue": "^3.0.0",
         "axios": "^1.1.2",
@@ -22,6 +23,7 @@
         "vue-chart-3": "^3.1.8"
     },
     "dependencies": {
-        "vue-draggable-next": "^2.1.1"
+        "vue-draggable-next": "^2.1.1",
+        "vue-toastification": "^2.0.0-rc.5"
     }
 }
