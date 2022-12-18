@@ -34,7 +34,9 @@ use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Auth;
 
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+
+
+Route::get('',[UserLoginController::class,'index'])->name('index');
 
 //Auth::routes();
 
