@@ -1,0 +1,150 @@
+[
+    {
+        "facultad": "FACULTAD DE CIENCIAS AGRARIAS",
+        "escuela": "Escuela Profesional de Ingeniería Agronómica"
+    },
+    {
+        "facultad": "FACULTAD DE CIENCIAS AGRARIAS",
+        "escuela": "Escuela Profesional de Ingeniería Agroindustrial"
+    },
+    {
+        "facultad": "FACULTAD DE CIENCIAS AGRARIAS",
+        "escuela": "Escuela Profesional de Ingeniería Topográfica y Agrimensura"
+    },
+    {
+        "facultad": "FACULTAD DE INGENIERIA AGRICOLA",
+        "escuela": "Escuela Profesional de Ingeniería Agrícola"
+    },
+    {
+        "facultad": "FACULTAD DE INGENIERIA CIVIL Y ARQUITECTURA",
+        "escuela": "Escuela Profesional de Físico - Matemática"
+    },
+    {
+        "facultad": "FACULTAD DE INGENIERIA CIVIL Y ARQUITECTURA",
+        "escuela": "Escuela Profesional de Ingeniería Civil"
+    },
+    {
+        "facultad": "FACULTAD DE INGENIERIA CIVIL Y ARQUITECTURA",
+        "escuela": "Escuela Profesional de Arquitectura y Urbanismo"
+    },
+    {
+        "facultad": "FACULTAD DE INGENIERIA ECONOMICA",
+        "escuela": "Escuela Profesional de Ingeniería Económica"
+    },
+    {
+        "facultad": "FACULTAD DE INGENIERIA ESTADISTICA E INFORMATICA",
+        "escuela": "Escuela Profesional de Ingeniería Estadística e Informática"
+    },
+    {
+        "facultad": "FACULTAD DE INGENIERIA GEOLOGICA Y METALURGICA",
+        "escuela": "Escuela Profesional de Ingeniería Geológica"
+    },
+    {
+        "facultad": "FACULTAD DE INGENIERIA GEOLOGICA Y METALURGICA",
+        "escuela": "Escuela Profesional de Ingeniería Metalúrgica"
+    },
+    {
+        "facultad": "FACULTAD DE INGENIERIA MECANICA ELECTRICA, ELECTRONICA Y SISTEMAS",
+        "escuela": "Escuela Profesional de Ingeniería Electrónica"
+    },
+    {
+        "facultad": "FACULTAD DE INGENIERIA MECANICA ELECTRICA, ELECTRONICA Y SISTEMAS",
+        "escuela": "Escuela Profesional de Ingeniería Mecánica Eléctrica"
+    },
+    {
+        "facultad": "FACULTAD DE INGENIERIA MECANICA ELECTRICA, ELECTRONICA Y SISTEMAS",
+        "escuela": "Escuela Profesional de Ingeniería de Sistemas"
+    },
+    {
+        "facultad": "FACULTAD DE INGENIERIA DE MINA",
+        "escuela": "Escuela Profesional de Ingenieria de Minas"
+    },
+    {
+        "facultad": "FACULTAD DE INGENIERIA QUIMICA",
+        "escuela": "Escuela Profesional de Ingeniería Química"
+    },
+    {
+        "facultad": "FACULTAD DE CIENCIAS BIOLOGICAS",
+        "escuela": "Escuela Profesional de Ciencias Biológicas Esp Ecología"
+    },
+    {
+        "facultad": "FACULTAD DE CIENCIAS BIOLOGICAS",
+        "escuela": "Escuela Profesional de Ciencias Biológicas Esp Pesquería"
+    },
+    {
+        "facultad": "FACULTAD DE CIENCIAS BIOLOGICAS",
+        "escuela": "Escuela Profesional de Ciencias Biológicas Esp Microbiología"
+    },
+    {
+        "facultad": "FACULTAD DE CIENCIAS DE LA SALUD",
+        "escuela": "Escuela Profesional de Nutrición Humana"
+    },
+    {
+        "facultad": "FACULTAD DE CIENCIAS DE LA SALUD",
+        "escuela": "Escuela Profesional de Odontología"
+    },
+    {
+        "facultad": "FACULTAD DE ENFERMERIA",
+        "escuela": "Escuela Profesional de Enfermería"
+    },
+    {
+        "facultad": "FACULTAD DE MEDICINA HUMANA",
+        "escuela": "Escuela Profesional de Medicina Humana"
+    },
+    {
+        "facultad": "FACULTAD DE MEDICINA VETERINARIA Y ZOOTECNIA",
+        "escuela": "Escuela Profesional de Medicina Veterinaria y Zootecnia"
+    },
+    {
+        "facultad": "FACULTAD DE CIENCIAS CONTABLES Y ADMINISTRATIVAS",
+        "escuela": "Escuela Profesional de Ciencias Contables"
+    },
+    {
+        "facultad": "FACULTAD DE CIENCIAS CONTABLES Y ADMINISTRATIVAS",
+        "escuela": "Escuela Profesional de Administración"
+    },
+    {
+        "facultad": "FACULTAD DE CIENCIAS DE LA EDUCACION",
+        "escuela": "Escuela Profesional de Física"
+    },
+    {
+        "facultad": "FACULTAD DE CIENCIAS DE LA EDUCACION",
+        "escuela": "Escuela Profesional de Inicial"
+    },
+    {
+        "facultad": "FACULTAD DE CIENCIAS DE LA EDUCACION",
+        "escuela": "Escuela Profesional de Primaria"
+    },
+    {
+        "facultad": "FACULTAD DE CIENCIAS DE LA EDUCACION",
+        "escuela": "Escuela Profesional de Secundaria"
+    },
+    {
+        "facultad": "FACULTAD DE CIENCIAS JURIDICAS Y POLITICAS",
+        "escuela": "Escuela Profesional de Derecho"
+    },
+    {
+        "facultad": "FACULTAD DE CIENCIAS SOCIALES",
+        "escuela": "Escuela Profesional de Antropología"
+    },
+    {
+        "facultad": "FACULTAD DE CIENCIAS SOCIALES",
+        "escuela": "Escuela Profesional de Arte"
+    },
+    {
+        "facultad": "FACULTAD DE CIENCIAS SOCIALES",
+        "escuela": "Escuela Profesional de Ciencias de la Comunicación Social"
+    },
+    {
+        "facultad": "FACULTAD DE CIENCIAS SOCIALES",
+        "escuela": "Escuela Profesional de Sociología"
+    },
+    {
+        "facultad": "FACULTAD DE CIENCIAS SOCIALES",
+        "escuela": "Escuela Profesional de Turismo"
+    },
+    {
+        "facultad": "FACULTAD DE TRABAJO SOCIAL",
+        "escuela": "Escuela Profesional de Trabajo Social"
+    }
+]
