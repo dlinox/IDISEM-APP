@@ -6,6 +6,7 @@
     @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
     @vite(['resources/css/app.css', "resources/sass/app.scss"])
     @inertiaHead
+    @laravelPWA
   </head>
   <body>
     @inertia
