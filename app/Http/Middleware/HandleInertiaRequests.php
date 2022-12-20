@@ -45,16 +45,13 @@ class HandleInertiaRequests extends Middleware
                         'id' => $request->user()->id,
                         'email' => $request->user()->email,
                         'name' => $request->user()->name,
-                        'pass_state' => $request->user()->password_state,
-                        'info_state' => $request->user()->info_state,
-                        'tyc_state' => $request->user()->tyc_state,
+                        'pass_state' => $request->user()->password_state  === 1 ? true : false,
+                        'info_state' => $request->user()->info_state  === 1 ? true : false,
+                        'tyc_state' => $request->user()->tyc_state  === 1 ? true : false,
                         //'menu' => $this->getUserMenu($request->user())
                     ] : null,
                 ];
             },
-
-
-  
 
             'flash' => [
                 'status' => fn () => $request->session()->get('status'),

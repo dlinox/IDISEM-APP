@@ -18,7 +18,6 @@ class EncuestaController extends Controller
 
     public function index()
     {
-
         $encuestas =
             Encuesta::select(
                 'enc_id',
