@@ -39,7 +39,7 @@ class RegisterController extends Controller
     protected function validatorCode(array $data)
     {
         return Validator::make($data, [
-            'code' => ['required', 'integer', 'digits:6', 'exists:estudiantes,est_codigo_mat'],
+            'code' => ['required', 'min:6', 'exists:estudiantes,est_codigo_mat'],
         ]);
     }
 
