@@ -159,9 +159,11 @@ import AdminLayout from '@/Layouts/AdminLayout.vue'
 import HeadingPagesComponent from '@/Components/HeadingPagesComponent.vue';
 import { PieChart } from 'vue-chart-3';
 import { Chart, registerables } from 'chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { ref } from 'vue';
 
 
+Chart.register(ChartDataLabels);
 
 Chart.register(...registerables);
 
@@ -172,7 +174,46 @@ const props = defineProps({
 
 const backgroundColor = ['#77CEFF', '#0079AF', '#123E6B', '#97B0C4', '#A5C8ED'];
 const options = {
+
     plugins: {
+        datalabels: {
+            /* anchor puede ser "start", "center" o "end" */
+            anchor: "center",
+            /* Podemos modificar el texto a mostrar */
+            formatter: (value, ctx) => {
+
+                const label = ctx.chart.data.labels[ctx.dataIndex];
+
+                let sum = 0;
+                let dataArr = ctx.chart.data.datasets[0].data;
+                dataArr.map(data => {
+                    sum += parseInt(data);
+                });
+                let percentage = (value*100 / sum).toFixed(2)+"%";
+                
+                if(value > 0){
+                    return percentage;
+                }
+                else{
+                    return '';
+                }
+                
+            },
+            /* Color del texto */
+            color: "white",
+            /* Formato de la fuente */
+            font: {
+                family: '"Times New Roman", Times, serif',
+                size: "20",
+                weight: "bold",
+            },
+            /* Formato de la caja contenedora */
+            //padding: "4",
+            //borderWidth: 2,
+            //borderColor: "darkblue",
+            //borderRadius: 8,
+            //backgroundColor: "lightblue"
+        },
         responsive: true,
         legend: {
             display: true,
@@ -243,7 +284,7 @@ const getRespuestasUser = async (id_enc) => {
 };
 
 const downloadExcelEncuesta = async (id_enc) => {
-   window.location.href = '/admin/reportes/excel-encuesta/' + id_enc;
+    window.location.href = '/admin/reportes/excel-encuesta/' + id_enc;
     //let res=  await axios.get('/admin/reportes/excel-encuesta/' + id_enc);
     //console.log(res.data);
 }

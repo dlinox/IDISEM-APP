@@ -1,12 +1,12 @@
 <template>
     <UserLayout>
-        <template v-if="!user.pass_state && !user.tyc_state && !user.info_state">
+        <!--<template v-if="!user.pass_state && !user.tyc_state && !user.info_state">
             <ChangePasswordComponent :cancel="false" />
-        </template>
-        <template v-else-if="user.pass_state && !user.tyc_state && !user.info_state">
+        </template> -->
+        <template v-if="!user.tyc_state && !user.info_state">
             <TerminosYCondicionesComponent />
         </template>
-        <template v-else-if="user.pass_state && user.tyc_state && !user.info_state">
+        <template v-else-if="user.tyc_state && !user.info_state">
             <HeadingPageComponent :heading="heading_info" />
             <div class="container py-4">
                 <div class="card border-0">
@@ -18,7 +18,7 @@
                 </div>
             </div>
         </template>
-        <template v-else-if="user.pass_state && user.tyc_state && user.info_state">
+        <template v-else-if="user.tyc_state && user.info_state">
             <HeadingPageComponent :heading="heading" />
             <div class="container py-4">
                 <div class="row">

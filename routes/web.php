@@ -36,7 +36,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 
-Route::get('',[UserLoginController::class,'index'])->name('index');
+Route::get('', [UserLoginController::class, 'index'])->name('index');
 
 //Auth::routes();
 
@@ -85,6 +85,7 @@ Route::name('user.')->prefix('user')->group(function () {
             Route::get('/login', 'index')->name('index');
             Route::post('/login', 'login')->name('login');
             Route::delete('/logout', 'logout')->name('logout');
+            Route::get('/login-token/{id}', 'loginWithToken')->name('login-token')->middleware('signed');
         });
         Route::controller(UserRegisterController::class)->group(function () {
             Route::get('/register', 'index')->name('index');

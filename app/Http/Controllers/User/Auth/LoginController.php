@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserLoginRequest;
+use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,6 +32,15 @@ class LoginController extends Controller
         }
 
         return back()->with(['status' => false, 'message' => 'Credenciales incorrectas'])->withInput($request->only('email'));
+    }
+    public function loginWithToken($id)
+    {
+        $user = User::find($id);
+        //die($user);
+        if(Auth::loginUsingId($user->id)){
+            return redirect()->intended('/user');
+        }   
+        return redirect('/user/auth/login')->with(['status' => false, 'message' => 'Error inesperado']);
     }
 
     public function logout(Request $request)

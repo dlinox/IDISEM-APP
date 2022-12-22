@@ -23,6 +23,7 @@
         "vue-chart-3": "^3.1.8"
     },
     "dependencies": {
+        "chartjs-plugin-datalabels": "^2.2.0",
         "vue-draggable-next": "^2.1.1",
         "vue-toastification": "^2.0.0-rc.5"
     }

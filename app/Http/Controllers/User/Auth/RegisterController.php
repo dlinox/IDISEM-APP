@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 
@@ -59,7 +60,7 @@ class RegisterController extends Controller
     protected function register(Request $request)
     {
         $this->validator($request->all())->validate();
-        $admin = User::create([
+        User::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
@@ -112,6 +113,10 @@ class RegisterController extends Controller
                     ]);
 
                     $user->password =  $password;
+                    // $user->url =  signedRoute '/user/auth/login-token/' . $user->token;
+                    $user->url =  URL::signedRoute('user.auth.login-token', ['id' => $user->id]);
+                    // user.auth.login-token
+
                     Mail::to($estudiante->est_correo)->send(new CrearCuentaMail($user));
                 });
             } catch (\Throwable $th) {

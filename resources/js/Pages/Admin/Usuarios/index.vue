@@ -2,11 +2,8 @@
 
     <AdminLayout>
         <div class="container">
-
-
             <div class="card border-0 my-3">
                 <div class="card-header border-0 bg-primary">
-
                 </div>
                 <div class="card-body">
                     <div class="">
@@ -16,8 +13,6 @@
                         <h1 class="fs-3 mb-0">
                             Usuarios Registrados
                         </h1>
-                      
-
                     </div>
                 </div>
             </div>
