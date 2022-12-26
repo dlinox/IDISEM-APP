@@ -16,8 +16,6 @@
                     <div class="card-body bg-white">
 
                         <div class="d-flex justify-content-end">
-
-
                             <CalificacionEncuestaComponent v-model="form.calificaciones" />
 
                             <button type="submit" class="btn btn-primary ms-3" :disabled="form.processing">

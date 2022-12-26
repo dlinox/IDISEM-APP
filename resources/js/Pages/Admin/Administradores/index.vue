@@ -5,14 +5,18 @@
 
 
             <div class="card border-0 my-3">
-                <div class="card-header border-0 bg-primary">
+                <div class="card-header border-0 bg-primary d-flex justify-content-between align-items-center">
+                    <span class="text-white fw-bold">
+                        {{ admins.length }} Administradores
+                    </span>
 
+                    <Link href="/admin/administradores/create" class="btn btn-light">
+                    Nuevo
+                    </Link>
                 </div>
                 <div class="card-body">
                     <div class="">
-                        <span class="text-secondary fw-bold mb-1">
-                            {{ admins.length }} Administradores
-                        </span>
+
                         <h1 class="fs-3 mb-0">
                             Administradores Registrados
                         </h1>
@@ -29,6 +33,7 @@
                             <th scope="col">Nombres</th>
                             <th scope="col">Correo</th>
                             <th scope="col">Registrado</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,7 +42,12 @@
                             <td> {{ item.name }} </td>
                             <td>{{ item.email }}</td>
                             <td>{{ item.registrado }}</td>
-
+                            <td>
+                                <Link :href="'/admin/administradores/' + item.id + '/edit'" type="button"
+                                    class="btn btn-icon text-info">
+                                <i class="bi bi-pencil-square"></i>
+                                </Link>
+                            </td>
 
                         </tr>
                     </tbody>
@@ -48,6 +58,7 @@
 </template>
 <script setup>
 import AdminLayout from '@/Layouts/AdminLayout.vue'
+import { Link } from '@inertiajs/inertia-vue3';
 import HeadingPagesComponent from '../../../Components/HeadingPagesComponent.vue';
 
 const props = defineProps({

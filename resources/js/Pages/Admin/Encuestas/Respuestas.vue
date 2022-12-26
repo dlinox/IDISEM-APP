@@ -182,29 +182,27 @@ const options = {
             /* Podemos modificar el texto a mostrar */
             formatter: (value, ctx) => {
 
-                const label = ctx.chart.data.labels[ctx.dataIndex];
-
                 let sum = 0;
                 let dataArr = ctx.chart.data.datasets[0].data;
                 dataArr.map(data => {
                     sum += parseInt(data);
                 });
-                let percentage = (value*100 / sum).toFixed(2)+"%";
-                
-                if(value > 0){
+                let percentage = (value * 100 / sum).toFixed(2) + "%";
+
+                if (value > 0) {
                     return percentage;
                 }
-                else{
+                else {
                     return '';
                 }
-                
+
             },
             /* Color del texto */
             color: "white",
             /* Formato de la fuente */
             font: {
                 family: '"Times New Roman", Times, serif',
-                size: "20",
+                size: "14",
                 weight: "bold",
             },
             /* Formato de la caja contenedora */

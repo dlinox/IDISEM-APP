@@ -2,11 +2,13 @@
     <div class="wrap-avatar-user">
 
         <div class="avatar-img">
-            A
+            <span>
+                {{ user.name.substring(0, 1) }}
+            </span>
         </div>
         <div class="user-details">
-            <span class="user-name">{{user.name}}</span>
-            <span class="user-rol">Administrador</span>
+            <span class="user-name">{{ user.name }}</span>
+            <small class="user-rol"> {{ user.rol_name }} </small>
         </div>
     </div>
 </template>
@@ -28,29 +30,35 @@ const props = defineProps({
 
 
     .avatar-img {
-        color: white;
+        span {
+            border-radius: 50%;
+            background-color: rgb(0, 0, 0);
+            width: 2.5rem;
+            height: 2.5rem;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         display: flex;
         justify-content: center;
         align-items: center;
         width: 2.8rem;
         height: 2.8rem;
-        border-radius: 50%;
-        background-color: rgb(0, 0, 0);
+
         margin: 0rem .8rem 0rem .8rem;
 
     }
 
     .user-details {
-        flex: auto;
+
         display: flex;
         flex-wrap: wrap;
         padding: .8rem 0rem;
 
-
         .user-name {
             display: block;
-
-
             font-weight: 700;
             color: white;
         }

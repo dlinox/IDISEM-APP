@@ -40,10 +40,6 @@
                                 <i class="bi bi-person"></i>
                             </button>
                             <ul class="dropdown-menu">
-                                <!-- <li><a class="dropdown-item disabled" href="#"> <i class="bi bi-person-bounding-box me-2"></i>
-                                        Perfil</a></li>
-                                <li><a class="dropdown-item disabled" href="#"> <i class="bi bi-gear me-2"></i>
-                                        Configuraciones</a></li>-->
                                 <li>
 
                                     <Link class="dropdown-item text-danger" href="/admin/auth/logout" method="delete"

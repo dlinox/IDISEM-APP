@@ -2,7 +2,7 @@
 
     <AdminLayout>
         <div class="container">
-          
+
             <div class="my-3">
                 <h1 class="fs-4 mb-0">
                     Editar : {{ form.titulo }}
@@ -162,8 +162,10 @@ const form = useForm({
 })
 
 function submit(e) {
-    console.log(e.type);
-    form.post('/admin/encuestas')
+
+    console.log(JSON.parse(JSON.stringify(form)));
+    console.log(props.encuesta.enc_id);
+    form.put('/admin/encuestas/' + props.encuesta.enc_id)
 }
 
 
@@ -197,3 +199,10 @@ const initialize = () => {
 initialize();
 
 </script>
+
+
+<style>
+.accordion-button:not(.collapsed)::after {
+    display: none;
+}
+</style>

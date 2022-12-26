@@ -10,11 +10,18 @@ use Inertia\Inertia;
 
 class EstudiantesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:admin.estudiantes.listado')->only('index');
+        $this->middleware('can:admin.estudiantes.formulario.crear')->only('create');
+        $this->middleware('can:admin.estudiantes.crear')->only('store');
+        $this->middleware('can:admin.estudiantes.ver')->only('show');
+        $this->middleware('can:admin.estudiantes.formulario.editar')->only('edit');
+        $this->middleware('can:admin.estudiantes.editar')->only('update');
+        $this->middleware('can:admin.estudiantes.eliminar')->only('destroy');
+    }
+
+
     public function index()
     {
         $estudiantes = Estudiante::all()->map(function ($estu) {
@@ -38,22 +45,11 @@ class EstudiantesController extends Controller
         );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //

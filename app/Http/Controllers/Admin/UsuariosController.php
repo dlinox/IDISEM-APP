@@ -9,11 +9,19 @@ use Inertia\Inertia;
 
 class UsuariosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function __construct()
+    {
+        $this->middleware('can:admin.usuarios.listado')->only('index');
+        $this->middleware('can:admin.usuarios.formulario.crear')->only('create');
+        $this->middleware('can:admin.usuarios.crear')->only('store');
+        $this->middleware('can:admin.usuarios.ver')->only('show');
+        $this->middleware('can:admin.usuarios.formulario.editar')->only('edit');
+        $this->middleware('can:admin.usuarios.editar')->only('update');
+        $this->middleware('can:admin.usuarios.eliminar')->only('destroy');
+    }
+
+
     public function index()
     {
         $usuarios = User::all();

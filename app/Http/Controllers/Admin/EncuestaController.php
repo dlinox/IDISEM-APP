@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use App\Models\Calificacion;
 use App\Models\Encuesta;
+use App\Models\EncuestasCompartida;
 use App\Models\Opcion;
 use App\Models\Pregunta;
 use App\Models\Respuesta;
@@ -21,20 +23,85 @@ use Illuminate\Support\Str;
 class EncuestaController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('can:admin.encuestas.listado')->only('index');
+        $this->middleware('can:admin.encuestas.formulario.crear')->only('create');
+        $this->middleware('can:admin.encuestas.crear')->only('store');
+        $this->middleware('can:admin.encuestas.ver')->only('show');
+        $this->middleware('can:admin.encuestas.formulario.editar')->only('edit');
+        $this->middleware('can:admin.encuestas.editar')->only('update');
+        $this->middleware('can:admin.encuestas.eliminar')->only('destroy');
+        //$this->middleware('can:admin.encuestas.shaer')->only('shaer');
+    }
+
     public function index()
     {
-        $encuestas =   Encuesta::all()->map(function ($encuersta) {
+        $user = Auth::user();
 
-            return [
-                'id' => $encuersta->enc_id,
-                'titulo' => $encuersta->enc_titulo,
-                'descripcion' => $encuersta->enc_descripcion,
-                'estado' => $encuersta->enc_estado,
-                'creado' => Carbon::createFromTimeStamp(strtotime($encuersta->created_at))->diffForHumans(),
-                'actualizado' => Carbon::createFromTimeStamp(strtotime($encuersta->updated_at))->diffForHumans(),
-            ];
-        });
-        return Inertia::render('Admin/Encuestas/index', ['encuestas' => $encuestas]);
+        $admins = Admin::where('id', '!=', $user->id)
+            ->get()->map(function ($admin) {
+                return [
+                    'id' => $admin->id,
+                    'nombre' => $admin->name,
+                    'correo' => $admin->email,
+                ];
+            });
+
+
+        if (Auth::user()->can('admin.listar.editar.todo')) {
+            $encuestas = Encuesta::join('admins', 'enc_adm_id', 'id')
+                ->get()
+                ->map(function ($encuersta) {
+                    return [
+                        'id' => $encuersta->enc_id,
+                        'titulo' => $encuersta->enc_titulo,
+                        'descripcion' => $encuersta->enc_descripcion,
+                        'estado' => $encuersta->enc_estado,
+                        'creado' => Carbon::createFromTimeStamp(strtotime($encuersta->created_at))->diffForHumans(),
+                        'actualizado' => Carbon::createFromTimeStamp(strtotime($encuersta->updated_at))->diffForHumans(),
+                        'autor' => $encuersta->name,
+                        'autor_id' => $encuersta->id,
+                    ];
+                });
+        } else {
+            $encuestas = Encuesta::join('admins', 'enc_adm_id', 'id')
+                ->join('encuestas_compartidas', 'ec_enc_id', 'enc_id')
+                ->where('enc_adm_id', $user->id)
+                ->orWhere('ec_adm_id', $user->id)
+                ->get()
+                ->map(function ($encuersta) {
+                    return [
+                        'id' => $encuersta->enc_id,
+                        'titulo' => $encuersta->enc_titulo,
+                        'descripcion' => $encuersta->enc_descripcion,
+                        'estado' => $encuersta->enc_estado,
+                        'creado' => Carbon::createFromTimeStamp(strtotime($encuersta->created_at))->diffForHumans(),
+                        'actualizado' => Carbon::createFromTimeStamp(strtotime($encuersta->updated_at))->diffForHumans(),
+                        'autor' => $encuersta->name,
+                        'autor_id' => $encuersta->id,
+                    ];
+                });
+        }
+        return Inertia::render('Admin/Encuestas/index', ['encuestas' => $encuestas, 'admins' => $admins]);
+    }
+
+    public function share(Request $request)
+    {
+
+        foreach ($request->admins as $val) {
+            EncuestasCompartida::create([
+                'ec_permiso' => true,
+                'ec_adm_id' => $val['id'],
+                'ec_enc_id' => $request->encuesta
+            ]);
+        }
+
+        return back()->with([
+            'message' => 'Compartido.',
+            'status' => true,
+            'data' => $request->admins
+        ]);
     }
 
     public function create()
@@ -104,22 +171,34 @@ class EncuestaController extends Controller
 
     public function store(Request $request)
     {
-        DB::transaction(function () use ($request) {
-            $encuesta = $this->createEncuesta($request);
-            $this->createCalificaciones($request['calificaciones'], $encuesta);
-            foreach ($request->secciones as $value) {
-                $seccion = $this->createSeccion($value, $encuesta);
-                foreach ($value['preguntas'] as $item) {
-                    $pregunta = $this->createPregunta($item, $seccion);
-                    if ($pregunta->pre_opcion != 'NO') {
-                        foreach ($item['opciones'] as $element) {
-                            $this->createOpcion($element, $pregunta);
+        try {
+            DB::transaction(function () use ($request) {
+                $encuesta = $this->createEncuesta($request);
+                $this->createCalificaciones($request['calificaciones'], $encuesta);
+                foreach ($request->secciones as $value) {
+                    $seccion = $this->createSeccion($value, $encuesta);
+                    foreach ($value['preguntas'] as $item) {
+                        $pregunta = $this->createPregunta($item, $seccion);
+                        if ($pregunta->pre_opcion != 'NO') {
+                            foreach ($item['opciones'] as $element) {
+                                $this->createOpcion($element, $pregunta);
+                            }
                         }
                     }
                 }
-            }
-        });
-        return Redirect::route('admin.encuestas.create')->with('message', 'Encuesta created.');
+            });
+            return Redirect::route('admin.encuestas.formulario.crear')->with([
+                'message' => 'Encuesta created.',
+                'status' => true,
+            ]);
+        } catch (\Throwable $error) {
+
+            return Redirect::route('admin.encuestas.formulario.crear')->with([
+                'message' => 'Encuesta created.',
+                'status' => true,
+                'data' => $error
+            ]);
+        }
     }
 
     public function show($id)
@@ -209,7 +288,15 @@ class EncuestaController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        $encuesta = Encuesta::find($id);
+        $encuesta->enc_titulo = $request->titulo;
+        $encuesta->enc_descripcion = $request->descripcion;
+        $encuesta->save();
+
+        return back()->with([
+            'message' => 'Actualizado.',
+            'status' => true,
+        ]);
     }
 
     public function destroy($id)

@@ -10,6 +10,17 @@ use Illuminate\Support\Facades\DB;
 class RespuestasController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('can:admin.respuestas.listado')->only('index');
+        $this->middleware('can:admin.respuestas.formulario.crear')->only('create');
+        $this->middleware('can:admin.respuestas.crear')->only('store');
+        $this->middleware('can:admin.respuestas.ver')->only('show');
+        $this->middleware('can:admin.respuestas.formulario.editar')->only('edit');
+        $this->middleware('can:admin.respuestas.editar')->only('update');
+        $this->middleware('can:admin.respuestas.eliminar')->only('destroy');
+    }
+
     public function index()
     {
         //
@@ -61,7 +72,7 @@ class RespuestasController extends Controller
             ->join('encuestas', 'sec_enc_id', 'enc_id')
             ->join('users', 'res_use_id', 'id')
             ->where('enc_id', $id)
-            ->groupby('res_use_id')
+            ->groupby('res_use_id', 'name')
             ->get();
 
         $this->response['estado'] = true;

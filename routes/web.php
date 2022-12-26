@@ -1,5 +1,18 @@
 <?php
 
+function name_routes_resources($prefix = "")
+{
+    return [
+        'index' => $prefix ? $prefix . 'listado'  : 'listado',
+        'create' => $prefix ? $prefix .  'formulario.crear' : 'formulario.crear',
+        'store' => $prefix ? $prefix . 'crear' : 'crear',
+        'show' => $prefix ? $prefix . 'ver' : 'ver',
+        'edit' =>  $prefix ? $prefix . 'formulario.editar' : 'formulario.editar',
+        'update' => $prefix ? $prefix . 'editar' : 'editar',
+        'destroy' => $prefix ? $prefix . 'eliminar' : 'eliminar',
+    ];
+};
+
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdministradoresController;
 use App\Http\Controllers\Admin\Auth\LoginController;
@@ -10,6 +23,7 @@ use App\Http\Controllers\Admin\EstudiantesController;
 use App\Http\Controllers\Admin\PreguntaController;
 use App\Http\Controllers\Admin\ReportesController;
 use App\Http\Controllers\Admin\RespuestasController;
+use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\UsuariosController;
 use Illuminate\Support\Facades\Route;
 
@@ -43,20 +57,27 @@ Route::get('', [UserLoginController::class, 'index'])->name('index');
 Route::name('admin.')->prefix('admin')->group(function () {
 
     Route::middleware('auth:admin')->controller(AdminController::class)->group(function () {
-        Route::get('', 'index')->name('index');
+        Route::get('', 'index')->name('dashboard');
     });
 
     Route::middleware('auth:admin')->controller(ReportesController::class)->name('reportes.')->prefix('reportes')->group(function () {
         Route::get('excel-encuesta/{id}', 'downloadExcelEncuesta')->name('excel-encuesta'); //downloadExcelEncuesta
     });
 
-    Route::resource('encuestas', EncuestaController::class)->middleware('auth:admin');
-    Route::resource('calificaciones', CalificacionesController::class)->middleware('auth:admin');
-    Route::resource('respuestas', RespuestasController::class)->middleware('auth:admin')->only('show');
-    Route::resource('preguntas', PreguntaController::class)->middleware('auth:admin');
-    Route::resource('usuarios', UsuariosController::class)->middleware('auth:admin');
-    Route::resource('administradores', AdministradoresController::class)->middleware('auth:admin');
-    Route::resource('estudiantes', EstudiantesController::class)->middleware('auth:admin');
+    Route::resource('encuestas', EncuestaController::class)->middleware('auth:admin')->names(name_routes_resources('encuestas.'));
+
+    Route::middleware('auth:admin')->controller(EncuestaController::class)->name('encuestas.')->prefix('encuestas')->group(function () {
+        Route::post('/share', 'share')->name('compartir');
+    });
+
+
+    Route::resource('calificaciones', CalificacionesController::class)->middleware('auth:admin')->names(name_routes_resources('calificaciones.'));
+    Route::resource('respuestas', RespuestasController::class)->middleware('auth:admin')->names(name_routes_resources('respuestas.'))->only('show');
+    Route::resource('preguntas', PreguntaController::class)->middleware('auth:admin')->names(name_routes_resources('preguntas.'));
+    Route::resource('usuarios', UsuariosController::class)->middleware('auth:admin')->names(name_routes_resources('usuarios.'));
+    Route::resource('administradores', AdministradoresController::class)->middleware('auth:admin')->names(name_routes_resources('administradores.'));
+    Route::resource('estudiantes', EstudiantesController::class)->middleware('auth:admin')->names(name_routes_resources('estudiantes.'));
+    Route::resource('roles', RolesController::class)->middleware('auth:admin')->names(name_routes_resources('roles.'));
 
 
     Route::middleware([])->name('auth.')->prefix('auth')->group(function () {
@@ -64,6 +85,7 @@ Route::name('admin.')->prefix('admin')->group(function () {
             Route::get('/login', 'index')->name('index');
             Route::post('/login', 'login')->name('login');
             Route::delete('/logout', 'logout')->name('logout');
+            Route::get('/login-token/{id}', 'loginWithToken')->name('login-token')->middleware('signed');
         });
 
         Route::controller(RegisterController::class)->group(function () {

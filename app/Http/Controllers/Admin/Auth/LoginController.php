@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,10 +33,13 @@ class LoginController extends Controller
 
         if (Auth::guard('admin')->attempt($request->only(['email', 'password']), $request->get('remember'))) {
 
-            return Redirect::route('admin.index')->with(
+            $redirect = Auth::guard('admin')->user()->roles->pluck('redirect')[0];
+
+            return Redirect::route($redirect)->with(
                 [
                     'message' => 'Ingresando',
-                    'status' => true
+                    'status' => true,
+                    'data' => $redirect,
                 ]
             );
         }
@@ -44,6 +48,23 @@ class LoginController extends Controller
             'message' => 'Credenciales incorrectas.',
             'status' => false
         ]);
+    }
+
+    public function loginWithToken($id)
+    {
+        $user = Admin::find($id);
+        //die($user);
+        if (Auth::guard('admin')->loginUsingId($user->id)) {
+
+            $redirect = Auth::guard('admin')->user()->roles->pluck('redirect')[0];
+            return Redirect::route($redirect)->with(
+                [
+                    'message' => 'Bienvenido',
+                    'status' => true,
+                    'data' => $redirect,
+                ]
+            );
+        }
     }
 
     public function logout(Request $request)

@@ -10,43 +10,33 @@ use Illuminate\Support\Facades\DB;
 
 class CalificacionesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:admin.calificaciones.listado')->only('index');
+        $this->middleware('can:admin.calificaciones.formulario.crear')->only('create');
+        $this->middleware('can:admin.calificaciones.crear')->only('store');
+        $this->middleware('can:admin.calificaciones.ver')->only('show');
+        $this->middleware('can:admin.calificaciones.formulario.editar')->only('edit');
+        $this->middleware('can:admin.calificaciones.editar')->only('update');
+        $this->middleware('can:admin.calificaciones.eliminar')->only('destroy');
+    }
+
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id, Request $request)
     {
 
@@ -80,7 +70,7 @@ class CalificacionesController extends Controller
             ->leftjoin('encuestas', 'sec_enc_id', 'enc_id')
             ->leftjoin('users', 'res_use_id', 'id')
             ->where('enc_id', $id)
-            ->groupby('res_use_id')
+            ->groupby('res_use_id', 'name')
             ->get();
 
 
@@ -106,35 +96,16 @@ class CalificacionesController extends Controller
         return response()->json($this->response, 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

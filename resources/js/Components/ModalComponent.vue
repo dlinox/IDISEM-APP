@@ -49,7 +49,6 @@ const show = computed({
 
     .card {
         max-width: 40rem;
-        min-width: 30rem;
         max-height: 90vh;
         overflow-y: auto;
     }

@@ -2,58 +2,54 @@
 
 namespace App\Exports;
 
-use App\Models\Calificacion;
-use App\Models\RespuestaOpcion;
+use Maatwebsite\Excel\Concerns\WithStyles;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\DB;
-use Maatwebsite\Excel\Concerns\Exportable;
-use Maatwebsite\Excel\Concerns\WithHeadings;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Events\AfterSheet;
 
-class EncuestaExport implements FromCollection
+class EncuestaExport implements FromView
 {
-    use Exportable;
 
-    public function __construct($idEncuesta = "")
+    public function __construct($encuesta)
     {
-        $this->idEncuesta = $idEncuesta;
+        $this->encuesta = $encuesta;
     }
 
-
-    public function collection()
+    public function view(): View
     {
-        /**
-        SELECT 
-        from respuesta_opcions
-        JOIN opcions ON ro_opc_id = opc_id
-        JOIN respuestas ON res_id = ro_res_id
-        JOIN preguntas on res_pre_id = pre_id
-        GROUP BY  pre_id 
-         **/
 
-        $res = RespuestaOpcion::select(
-            DB::raw("
-            GROUP_CONCAT(respuesta_opcions.updated_at) AS fecha, 
-            GROUP_CONCAT(opc_detalle) AS res, 
-            pre_titulo,
-            pre_id
-         ")
-        )->join('opcions', 'ro_opc_id', 'opc_id')
-            ->join('respuestas', 'res_id', 'ro_res_id')
-            ->join('preguntas', 'res_pre_id', 'pre_id')
-            ->groupBy('pre_id')
-            ->get();
+        $data = DB::select("
+        SELECT  preguntas.pre_id,  pre_titulo , respuesta_opcions.created_at, opc_detalle
+        FROM encuestas
+        JOIN seccions ON sec_enc_id = enc_id
+        JOIN preguntas ON pre_sec_id = sec_id
+        JOIN opcions ON opc_pre_id = pre_id
+        JOIN respuesta_opcions ON ro_opc_id = opc_id
+        WHERE enc_id = {$this->encuesta}
+        ORDER BY preguntas.pre_id, pre_titulo , respuesta_opcions.created_at");
 
-        $data = $res->toArray();
+        $header = array_unique(array_column($data, 'pre_titulo'));
+        array_unshift($header, 'Marca temporal');
 
-        $collection = [];
+        $fechas = array_unique(array_column($data, 'created_at'));
 
-        foreach ($data as $key => $value) {
-            $collection[$value['pre_titulo']]['fecha'] =  explode(',', $value['fecha']);
-            $collection[$value['pre_titulo']]['opc'] =  explode(',', $value['res']);
+        $datos = [];
+
+        foreach ($fechas as $i => $fecha) {
+            $datos[$i] = [];
+            foreach ($data as $item) {
+                if ($fecha ==  $item->created_at) {
+                    array_push($datos[$i], $item->opc_detalle);
+                }
+            }
         }
 
-        return  collect($collection);
-    }
+        foreach ($fechas as $i => $fecha) {
+            array_unshift($datos[$i], $fecha);
+        }
 
-   
+        return view('exports.encuesta', ['header' => $header, 'data' => $datos]);
+    }
 }

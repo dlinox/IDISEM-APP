@@ -3,21 +3,34 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\CrearCuentaAdminMail;
 use App\Models\Admin;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Inertia\Inertia;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Str;
+
+use Illuminate\Support\Facades\URL;
 
 class AdministradoresController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:admin.administradores.listado')->only('index');
+        $this->middleware('can:admin.administradores.formulario.crear')->only('create');
+        $this->middleware('can:admin.administradores.crear')->only('store');
+        $this->middleware('can:admin.administradores.ver')->only('show');
+        $this->middleware('can:admin.administradores.formulario.editar')->only('edit');
+        $this->middleware('can:admin.administradores.editar')->only('update');
+        $this->middleware('can:admin.administradores.eliminar')->only('destroy');
+    }
+
     public function index()
     {
-        $res = Admin::all()->map(function ($admin){
+        $res = Admin::all()->map(function ($admin) {
             return [
                 'id' => $admin->id,
                 'name' => $admin->name,
@@ -34,67 +47,81 @@ class AdministradoresController extends Controller
         );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $roles = Role::all();
+
+        return Inertia::render(
+            'Admin/Administradores/Crear',
+            [
+                'roles' => $roles
+            ]
+        );
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+
+        $password =  Str::random(8);
+
+        $admin = Admin::create([
+            'name' => $request->nombres,
+            'email' =>  $request->correo,
+            'password' =>  Hash::make($password),
+        ]);
+
+        $admin->assignRole($request->rol);
+
+        $admin->url =  URL::signedRoute('admin.auth.login-token', ['id' => $admin->id]);
+
+        Mail::to($admin->email)->send(new CrearCuentaAdminMail($admin));
+
+        return back()->with([
+            'message' => 'usuario creado.',
+            'status' => true,
+        ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+
+        $roles = Role::all();
+
+        $admin =  Admin::find($id);
+
+        $admin->rol = $admin->getRoleNames()[0];
+
+        return Inertia::render(
+            'Admin/Administradores/Editar',
+            [
+                'roles' => $roles,
+                'admin' => $admin
+            ]
+        );
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $admin =  Admin::find($id);
+
+        $admin->syncRoles($request->rol);
+
+        $admin->name = $request->name;
+        $admin->email = $request->email;
+
+        $admin->save();
+
+        return back()->with([
+            'message' => 'Actualizado con exito.',
+            'status' => true,
+        ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

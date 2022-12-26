@@ -3,12 +3,13 @@
     <ul class="menu">
         <span class="menu-heading">Menu</span>
 
-        <li v-for="(item, index) in listMenu" :key="index" class="menu-item" :class="!item.childrens ? '' : 'collapse'">
+        <li v-for="(item, index) in user.menu" :key="index" class="menu-item"
+            :class="!item.childrens ? '' : 'collapse'">
             <template v-if="!item.childrens">
                 <Link :href="item.route">
                 <span>
-                    <i :class="item.icon + 'me-2'"></i>
-                    {{ item.name }}
+                    <i :class="item.icon + ' me-2'"></i>
+                    {{ item.label }}
                 </span>
                 </Link>
             </template>
@@ -17,7 +18,7 @@
                 <Link :href="item.route" data-bs-toggle="collapse" :data-bs-target="'#item-menu-' + index"
                     aria-expanded="true" :aria-controls="'item-menu-' + index">
                 <span>
-                    <i :class="item.icon + 'me-2'"></i> {{ item.name }}
+                    <i :class="item.icon + ' me-2'"></i> {{ item.label }}
                 </span>
 
                 <i class="bi bi-caret-down-fill"></i>
@@ -26,7 +27,7 @@
                     <li v-for="(elemet, i) in item.childrens" :key="i" class="menu-item">
                         <Link :href="elemet.route">
                         <span>
-                            <i class="bi bi-record me-2"></i> {{ elemet.name }}
+                            <i class="bi bi-record me-2"></i> {{ elemet.label }}
                         </span>
                         </Link>
                     </li>
@@ -37,7 +38,12 @@
 </template>
 
 <script setup>
-import { Link } from '@inertiajs/inertia-vue3';
+import { Link, usePage } from '@inertiajs/inertia-vue3';
+import { computed } from '@vue/reactivity';
+
+const user = computed(() => usePage().props.value.auth.user)
+
+
 
 const listMenu = [
     {
@@ -61,7 +67,7 @@ const listMenu = [
             }
         ]
     },
-   
+
     {
         name: 'Administradores',
         route: '/admin/administradores',
@@ -79,6 +85,21 @@ const listMenu = [
         route: '/admin/estudiantes',
         icon: 'bi bi-layout-wtf',
         childrens: false,
+    },
+    {
+        name: 'Autorización',
+        route: '#',
+        icon: 'bi bi-person-lock',
+        childrens: [
+            {
+                name: 'Roles',
+                route: '/admin/roles',
+            },
+            {
+                name: 'Permisos',
+                route: '/admin/permisos/',
+            }
+        ]
     },
 ];
 
