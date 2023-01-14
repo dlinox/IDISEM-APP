@@ -44,14 +44,14 @@ const types = [
         name: 'Respuesta Corta',
         icon: 'bi bi-filter-left',
         input: 'TEXT',
-        active: false,
+        active: true,
     },
 
     {
         name: 'Respuesta Larga',
         icon: 'bi bi-text-left',
         input: 'TEXTAREA',
-        active: false,
+        active: true,
         divider: true
     },
     {

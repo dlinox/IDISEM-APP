@@ -26,11 +26,8 @@
                 <div class="w-100 h-100 d-flex justify-content-between align-items-center px-3">
                     <div>
                         <button class="btn btn-dark" @click="drawer = !drawer">
-
-
                             <i v-if="!drawer" class="bi bi-window-sidebar"></i>
                             <i v-else class="bi bi-window"></i>
-
                         </button>
                     </div>
                     <div>
