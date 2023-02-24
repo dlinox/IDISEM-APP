@@ -14,7 +14,7 @@
                         <Link href="/user/auth/register" class="nav-link show active" id="nav-register-tab" data-bs-toggle="tab"
                             data-bs-target="#nav-register" type="button" role="tab" aria-controls="nav-register"
                             aria-selected="false">
-                            Register
+                            Registro
                         </Link>
 
                     </div>

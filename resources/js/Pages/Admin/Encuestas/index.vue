@@ -22,16 +22,13 @@
                     </div>
                 </div>
             </div>
-
             <div class="row">
                 <div v-for="(item, index ) in encuestas" :key="index" class="col-12 mb-3">
                     <div class="card border-0">
                         <div class="card-header border-0 d-flex justify-content-between align-items-center">
-
                             <small class="text-secondary">
                                 <i class="bi bi-calendar-check me-2"></i> {{ item.actualizado }}
                             </small>
-
                             <div class="dropdown">
                                 <button class="btn btn-sm" type="button" data-bs-toggle="dropdown"
                                     aria-expanded="false">

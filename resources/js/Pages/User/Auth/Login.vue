@@ -2,46 +2,53 @@
     <AuthLayout>
         <div class="card card-auth mx-auto">
             <div class="card-header">
-                <img class="logo-img" :src="Logo" alt="Logo app">
+                <img class="logo-img" :src="Logo" alt="Logo app" />
             </div>
             <div class="card-body">
                 <nav>
                     <div class="nav" id="nav-tab" role="tablist">
-                        <Link href="/user/auth/login" class="nav-link active" id="nav-login-tab" data-bs-toggle="tab"
-                            data-bs-target="#nav-login" role="tab" aria-controls="nav-login"
-                            aria-selected="true">
+                        <Link
+                            href="/user/auth/login"
+                            class="nav-link active"
+                            id="nav-login-tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#nav-login"
+                            role="tab"
+                            aria-controls="nav-login"
+                            aria-selected="true"
+                        >
                             Login
                         </Link>
                         <Link href="/user/auth/register" class="nav-link">
-                            Register
+                            Registro
                         </Link>
-
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane pt-4 fade show active" id="nav-login" role="tabpanel"
-                        aria-labelledby="nav-login-tab" tabindex="0">
+                    <div
+                        class="tab-pane pt-4 fade show active"
+                        id="nav-login"
+                        role="tabpanel"
+                        aria-labelledby="nav-login-tab"
+                        tabindex="0"
+                    >
                         <LoginFormComponent />
                     </div>
                 </div>
             </div>
-            <div class="card-footer">
-                ENCUESTA © 2022
-            </div>
+            <div class="card-footer">IDISEM © 2022</div>
         </div>
-
     </AuthLayout>
-
 </template>
 <script setup>
-import Logo from "@/assets/images/logo.png"
-import AuthLayout from '@/Layouts/AuthLayout.vue';
+import Logo from "@/assets/images/logo.png";
+import AuthLayout from "@/Layouts/AuthLayout.vue";
 import { Link } from "@inertiajs/inertia-vue3";
-import LoginFormComponent from './Components/LoginFormComponent.vue'
+import LoginFormComponent from "./Components/LoginFormComponent.vue";
 </script>
 
 <style lang="scss">
-$color-primario: #0E2940;
+$color-primario: #0e2940;
 
 .card.card-auth {
     width: 30rem;
@@ -61,7 +68,6 @@ $color-primario: #0E2940;
             width: 8.5rem;
             border-radius: 10px;
         }
-
     }
 
     .card-body {
@@ -80,8 +86,7 @@ $color-primario: #0E2940;
                     background-color: transparent;
                     border: none;
                     border-bottom: 2px solid $color-primario;
-                    color: $color-primario ;
-
+                    color: $color-primario;
                 }
             }
         }
@@ -93,7 +98,7 @@ $color-primario: #0E2940;
         background-color: #fafafa;
         text-align: center;
         color: #777;
-        font-size: .9em;
+        font-size: 0.9em;
     }
 }
 
