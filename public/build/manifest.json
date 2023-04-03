@@ -618,65 +618,61 @@
     "file": "assets/app.4522082c.css",
     "src": "resources/js/app.css"
   },
-  "resources/js/Pages/Admin/Encuestas/Editar.css": {
-    "file": "assets/Editar.aaa3d766.css",
-    "src": "resources/js/Pages/Admin/Encuestas/Editar.css"
-  },
-  "resources/js/Pages/User/Components/CardEncuestaComponent.css": {
-    "file": "assets/CardEncuestaComponent.5d675ee7.css",
-    "src": "resources/js/Pages/User/Components/CardEncuestaComponent.css"
+  "resources/js/Pages/User/Auth/Login.css": {
+    "file": "assets/Login.326aa7d7.css",
+    "src": "resources/js/Pages/User/Auth/Login.css"
   },
   "ModalComponent.css": {
     "file": "assets/ModalComponent.1ee45248.css",
     "src": "ModalComponent.css"
   },
-  "resources/js/Pages/User/Components/CardPreguntaComponent.css": {
-    "file": "assets/CardPreguntaComponent.80c0abad.css",
-    "src": "resources/js/Pages/User/Components/CardPreguntaComponent.css"
-  },
-  "AuthLayout.css": {
-    "file": "assets/AuthLayout.be147b43.css",
-    "src": "AuthLayout.css"
-  },
-  "HeadingPagesComponent.css": {
-    "file": "assets/HeadingPagesComponent.8169ee08.css",
-    "src": "HeadingPagesComponent.css"
-  },
-  "resources/js/Pages/Admin/Roles/Editar.css": {
-    "file": "assets/Editar.caf39e7b.css",
-    "src": "resources/js/Pages/Admin/Roles/Editar.css"
-  },
-  "resources/js/Pages/Admin/Encuestas/Crear.css": {
-    "file": "assets/Crear.aaa3d766.css",
-    "src": "resources/js/Pages/Admin/Encuestas/Crear.css"
-  },
-  "AdminLayout.css": {
-    "file": "assets/AdminLayout.b155f48c.css",
-    "src": "AdminLayout.css"
-  },
-  "resources/js/Pages/User/Components/FormularioDatosGeneral.css": {
-    "file": "assets/FormularioDatosGeneral.401de042.css",
-    "src": "resources/js/Pages/User/Components/FormularioDatosGeneral.css"
-  },
-  "resources/js/Pages/Admin/Auth/Login.css": {
-    "file": "assets/Login.6fb3ce93.css",
-    "src": "resources/js/Pages/Admin/Auth/Login.css"
-  },
-  "resources/js/Pages/Admin/Encuestas/Respuestas.css": {
-    "file": "assets/Respuestas.ff4f790f.css",
-    "src": "resources/js/Pages/Admin/Encuestas/Respuestas.css"
+  "resources/js/Pages/Admin/Encuestas/Editar.css": {
+    "file": "assets/Editar.aaa3d766.css",
+    "src": "resources/js/Pages/Admin/Encuestas/Editar.css"
   },
   "resources/js/Pages/Admin/Estudiantes/index.css": {
     "file": "assets/index.b88a6205.css",
     "src": "resources/js/Pages/Admin/Estudiantes/index.css"
   },
-  "resources/js/Pages/User/Encuestas/ShowEncuesta.css": {
-    "file": "assets/ShowEncuesta.8f6afd9f.css",
-    "src": "resources/js/Pages/User/Encuestas/ShowEncuesta.css"
+  "resources/js/Pages/Admin/Roles/Editar.css": {
+    "file": "assets/Editar.caf39e7b.css",
+    "src": "resources/js/Pages/Admin/Roles/Editar.css"
   },
-  "resources/js/Pages/User/Auth/Login.css": {
-    "file": "assets/Login.326aa7d7.css",
-    "src": "resources/js/Pages/User/Auth/Login.css"
+  "resources/js/Pages/Admin/Encuestas/Respuestas.css": {
+    "file": "assets/Respuestas.ff4f790f.css",
+    "src": "resources/js/Pages/Admin/Encuestas/Respuestas.css"
+  },
+  "resources/js/Pages/User/Components/FormularioDatosGeneral.css": {
+    "file": "assets/FormularioDatosGeneral.401de042.css",
+    "src": "resources/js/Pages/User/Components/FormularioDatosGeneral.css"
+  },
+  "resources/js/Pages/User/Components/CardPreguntaComponent.css": {
+    "file": "assets/CardPreguntaComponent.80c0abad.css",
+    "src": "resources/js/Pages/User/Components/CardPreguntaComponent.css"
+  },
+  "resources/js/Pages/Admin/Encuestas/Crear.css": {
+    "file": "assets/Crear.aaa3d766.css",
+    "src": "resources/js/Pages/Admin/Encuestas/Crear.css"
+  },
+  "resources/js/Pages/Admin/Auth/Login.css": {
+    "file": "assets/Login.6fb3ce93.css",
+    "src": "resources/js/Pages/Admin/Auth/Login.css"
+  },
+  "HeadingPagesComponent.css": {
+    "file": "assets/HeadingPagesComponent.8169ee08.css",
+    "src": "HeadingPagesComponent.css"
+  },
+  "UserLayout.css": {
+    "file": "assets/UserLayout.7aa28c7a.css",
+    "src": "UserLayout.css"
+  },
+  "resources/js/Pages/User/Components/CardEncuestaComponent.css": {
+    "file": "assets/CardEncuestaComponent.5d675ee7.css",
+    "src": "resources/js/Pages/User/Components/CardEncuestaComponent.css"
+  },
+  "AuthLayout.css": {
+    "file": "assets/AuthLayout.be147b43.css",
+    "src": "AuthLayout.css"
   },
   "resources/js/Pages/User/Components/HeadingPageComponent.css": {
     "file": "assets/HeadingPageComponent.27e09a98.css",
@@ -686,9 +682,13 @@
     "file": "assets/Register.01de45b3.css",
     "src": "resources/js/Pages/User/Auth/Register.css"
   },
-  "UserLayout.css": {
-    "file": "assets/UserLayout.7aa28c7a.css",
-    "src": "UserLayout.css"
+  "AdminLayout.css": {
+    "file": "assets/AdminLayout.b155f48c.css",
+    "src": "AdminLayout.css"
+  },
+  "resources/js/Pages/User/Encuestas/ShowEncuesta.css": {
+    "file": "assets/ShowEncuesta.8f6afd9f.css",
+    "src": "resources/js/Pages/User/Encuestas/ShowEncuesta.css"
   },
   "resources/sass/app.scss": {
     "file": "assets/app.e3c48e31.css",
