@@ -31,9 +31,9 @@ class HandleInertiaRequests extends Middleware
                         'email' => $request->user()->email,
                         'name' => $request->user()->name,
                         'rol_name' =>   Auth::guard('admin')->check() ?  $request->user()->getRoleNames()[0] :  '-',
-                        'pass_state' => $request->user()->password_state  === 1 ? true : false,
-                        'info_state' => $request->user()->info_state  === 1 ? true : false,
-                        'tyc_state' => $request->user()->tyc_state  === 1 ? true : false,
+                        'pass_state' => $request->user()->password_state,
+                        'info_state' => $request->user()->info_state,
+                        'tyc_state' => $request->user()->tyc_state,
                         'menu' => Auth::guard('admin')->check() ?  $this->getUserMenu($request->user()) : ''
                     ] : null,
                 ];

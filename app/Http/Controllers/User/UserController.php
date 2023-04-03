@@ -64,7 +64,7 @@ class UserController extends Controller
         if ($res) {
 
             $user =  User::find(Auth::user()->id);
-            $user->info_state =  1;
+            $user->info_state =  true;
             $user->save();
 
             return Redirect::route('user.index')->with(
