@@ -42,7 +42,7 @@
                             <th scope="col">Correo</th>
                             <th scope="col">DNI</th>
                             <th scope="col">Celular</th>
-                            <th scope="col">Estado</th>
+                            <th scope="col">Registrado</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,7 +54,8 @@
                             <td>{{ item.dni }}</td>
                             <td>{{ item.celular }}</td>
                             <td>
-                                <template v-if="item.estado">
+
+                                <template v-if="item.estado == 1">
                                     <span class="badge text-bg-success">
                                         Registrado</span
                                     >
