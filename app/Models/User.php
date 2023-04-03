@@ -64,7 +64,7 @@ class User extends Authenticatable
         );
     }
 
-    protected function infodState(): Attribute
+    protected function infoState(): Attribute
     {
         return Attribute::make(
             get: fn ($value) => $value  == 1 ? true : false,
