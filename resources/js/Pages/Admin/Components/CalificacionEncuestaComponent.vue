@@ -67,7 +67,6 @@ import ModalComponent from '../../../Components/ModalComponent.vue';
 
 const props = defineProps({
     modelValue: Array,
-
 })
 
 const emit = defineEmits(['update:modelValue']);

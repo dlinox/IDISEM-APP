@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Estudiante;
 use App\Models\User;
 use Illuminate\Http\Request;
+
 use Inertia\Inertia;
 
 class EstudiantesController extends Controller
@@ -22,27 +23,35 @@ class EstudiantesController extends Controller
     }
 
 
-    public function index()
+    public function index(Request $request)
     {
-        $estudiantes = Estudiante::all()->map(function ($estu) {
-            return [
-                'id' => $estu->est_id,
-                'nombres' => $estu->est_nombres,
-                'apellidos' => $estu->est_paterno .' '. $estu->est_materno,
-                'correo' => $estu->est_correo,
-                'dni' => $estu->est_dni,
-                'celular' => $estu->est_celular,
-                'codigo' => $estu->est_codigo_mat,
-                'registrado' => User::select('id')->where('student',  $estu->est_id)->first() ? true: false,
-            ];
-        });
 
-        return Inertia::render(
-            'Admin/Estudiantes/index',
-            [
-                'estudiantes' => $estudiantes
-            ]
-        );
+        $search = $request->search ?? '';
+        $estudiantes = Estudiante::select(
+            'est_id as id',
+            'est_nombres as nombres',
+            'est_paterno as paterno',
+            'est_materno as materno',
+            'est_correo as correo',
+            'est_dni as dni',
+            'est_celular as celular',
+            'est_codigo_mat as codigo_mat',
+            'est_estado as estado',
+            )
+            ->orWhere('est_nombres', 'LIKE', '%' . $search . '%')
+            ->orWhere('est_paterno', 'LIKE', '%' . $search . '%')
+            ->orWhere('est_materno', 'LIKE', '%' . $search . '%')
+            ->orWhere('est_correo', 'LIKE', '%' . $search . '%')
+            ->orWhere('est_dni', 'LIKE', '%' . $search . '%')
+            ->orWhere('est_celular', 'LIKE', '%' . $search . '%')
+            ->orWhere('est_codigo_mat', 'LIKE', '%' . $search . '%')
+            ->paginate(10)
+            ->withQueryString();
+
+        return Inertia::render('Admin/Estudiantes/index', [
+            'filters' => $request->all('search'),
+            'estudiantes' => $estudiantes
+        ]);
     }
 
     public function create()

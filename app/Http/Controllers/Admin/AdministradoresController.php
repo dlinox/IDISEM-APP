@@ -28,21 +28,28 @@ class AdministradoresController extends Controller
         $this->middleware('can:admin.administradores.eliminar')->only('destroy');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $res = Admin::all()->map(function ($admin) {
-            return [
+
+        $search = $request->search ?? '';
+
+        $admins = Admin::select()
+            ->orWhere('name', 'LIKE', '%' . $search . '%')
+            ->orWhere('email', 'LIKE', '%' . $search . '%')
+            ->paginate(10)
+            ->withQueryString()
+            ->through(fn ($admin) => [
                 'id' => $admin->id,
                 'name' => $admin->name,
                 'email' => $admin->email,
                 'registrado' => Carbon::createFromTimeStamp(strtotime($admin->created_at))->diffForHumans(),
-            ];
-        });
+            ]);
 
         return Inertia::render(
             'Admin/Administradores/index',
             [
-                'admins' => $res
+                'admins' => $admins,
+                'filters' => $request->all('search'),
             ]
         );
     }
