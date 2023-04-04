@@ -58,6 +58,9 @@ class UserController extends Controller
             'ifa_soten' => $request->estudios,
             'ifa_orientacion_sex' => $request->orientacion == 'otro' ? $request->orientacion_otro :  $request->orientacion,
             'ifa_vive_con' => $request->vives,
+
+            'ifa_ingreso' => $request->ingreso,
+
             'user_id' => Auth::user()->id,
         ]);
 

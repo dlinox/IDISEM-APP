@@ -20,6 +20,7 @@ class InfoAdicional extends Model
         'ifa_soten',
         'ifa_orientacion_sex',
         'ifa_vive_con',
+        'ifa_ingreso',
         'user_id',
     ];
     protected $primaryKey  = 'ifa_id';

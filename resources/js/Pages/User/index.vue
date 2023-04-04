@@ -35,7 +35,6 @@
 import { usePage } from '@inertiajs/inertia-vue3';
 import { computed } from 'vue';
 import UserLayout from '../../Layouts/UserLayout.vue';
-import ChangePasswordComponent from './Auth/Components/ChangePasswordComponent.vue';
 import TerminosYCondicionesComponent from './Auth/Components/TerminosYCondicionesComponent.vue';
 import CardEncuestaComponent from './Components/CardEncuestaComponent.vue';
 import FormularioDatosGeneral from './Components/FormularioDatosGeneral.vue';
@@ -54,7 +53,7 @@ const heading_info = {
 }
 
 const heading = {
-    title: 'Encuesntas',
-    description: 'Encuestas Disponibles'
+    title: 'Encuestas',
+    description: 'Encuestas disponibles'
 }
 </script>
