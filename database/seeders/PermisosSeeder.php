@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class PermisosSeeder extends Seeder
 {
@@ -16,6 +17,20 @@ class PermisosSeeder extends Seeder
      */
     public function run()
     {
+
+       $admin = Role::create([
+            'guard_name' => 'admin',
+            'name' => 'ADMINISTRADOR',
+            'redirect' => 'admin.dashboard'
+        ]);
+        $investigator = Role::create([
+            'guard_name' => 'admin',
+            'name' => 'INVESTIGADOR',
+            'redirect' => 'admin.encuestas.listado'
+        ]);
+
+
+
         $rutas  = collect(Route::getRoutes())->map(function ($value) {
             if ($value->action['prefix'] === '/admin') {
                 return [
@@ -28,16 +43,22 @@ class PermisosSeeder extends Seeder
             }
         });
 
+        $permisos = [];
 
         foreach ($rutas as $key => $value) {
             if ($value) {
-                Permission::create(
+                $aux = Permission::create(
                     [
                         'name' => $value['as'],
                         'guard_name' => 'admin'
                     ]
                 );
+
+                array_push($permisos,  $aux->name);
+                
             }
         }
+
+        $admin->syncPermissions($permisos);
     }
 }

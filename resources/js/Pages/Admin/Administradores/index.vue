@@ -91,9 +91,7 @@
 import { computed, ref, watch } from "vue";
 import { Link, useForm } from "@inertiajs/inertia-vue3";
 import { Inertia } from "@inertiajs/inertia";
-
 import AdminLayout from "@/Layouts/AdminLayout.vue";
-import HeadingPagesComponent from "../../../Components/HeadingPagesComponent.vue";
 import PaginationComponent from "@/Components/PaginationComponent.vue";
 import throttle from "lodash/throttle";
 

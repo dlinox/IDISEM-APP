@@ -114,9 +114,11 @@ Route::name('user.')->prefix('user')->group(function () {
             Route::post('/register', 'register')->name('register');
             Route::post('/changer-password', 'changerPassword')->name('changer-password');
             Route::post('/agree-tyc', 'agreeTerms')->name('agree-tyc');
-
+            
             Route::post('/val-code', 'validarCode')->name('val-code');
             Route::post('/send-email', 'sendEmail')->name('send-email');
+            
+            Route::post('/register-student', 'registerStudent')->name('register-student');
         });
     });
 

@@ -17,6 +17,27 @@
                 </div>
             </div>
             <div class="card border-0 rounded-0">
+
+                <div class="card-header bg-white">
+                    <div class="row">
+                        <div class="col-6"></div>
+                        <div class="col-6">
+                            <div class="input-group">
+                                <input
+                                    type="text"
+                                    class="form-control border-0"
+                                    placeholder="Buscar"
+                                    aria-label="Buscar"
+                                    v-model="formFiltres.search"
+                                />
+                                <span class="input-group-text border-0">
+                                    <i class="bi bi-search"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <table class="table table-bordered mb-0">
                     <thead>
                         <tr>
@@ -29,7 +50,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(item, index) in usuarios" :key="index">
+                        <tr v-for="(item, index) in items" :key="index">
                             <th scope="row">{{ item.id }} </th>
                             <td> {{ item.name }} </td>
                             <td>{{ item.email }}</td>
@@ -62,15 +83,50 @@
                         </tr>
                     </tbody>
                 </table>
+
+                <div class="card-footer d-flex justify-content-end">
+                    <PaginationComponent
+                        :currentPage="usuarios.current_page"
+                        :totalPages="usuarios.last_page"
+                        :links="usuarios.links"
+                    />
+                </div>
+
             </div>
         </div>
     </AdminLayout>
 </template>
 <script setup>
-import AdminLayout from '@/Layouts/AdminLayout.vue'
-import HeadingPagesComponent from '../../../Components/HeadingPagesComponent.vue';
+import { computed, ref, watch } from "vue";
+import { Link, useForm } from "@inertiajs/inertia-vue3";
+import { Inertia } from "@inertiajs/inertia";
+import AdminLayout from "@/Layouts/AdminLayout.vue";
+import PaginationComponent from "@/Components/PaginationComponent.vue";
+import throttle from "lodash/throttle";
 
 const props = defineProps({
-    usuarios: Array
+    usuarios: Object,
+    filters: Object,
 });
+
+const formFiltres = useForm({
+    search: props.filters.search,
+});
+
+const items = computed(() => props.usuarios.data);
+
+watch(
+    formFiltres,
+    throttle((val) => {
+        Inertia.get(
+            "/admin/usuarios",
+            { search: val.search },
+            {
+                preserveState: true,
+            }
+        );
+    }, 600),
+    { deep: true }
+);
+
 </script>

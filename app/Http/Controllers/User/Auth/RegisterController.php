@@ -39,9 +39,17 @@ class RegisterController extends Controller
 
     protected function validatorCode(array $data)
     {
-        return Validator::make($data, [
-            'code' => ['required', 'min:6', 'exists:estudiantes,est_codigo_mat'],
-        ]);
+        return Validator::make(
+            $data,
+            [
+                'code' => 'required|digits:6|exists:estudiantes,est_codigo_mat',
+            ],
+            [
+                'code.required' => '* Obligatorio',
+                'code.digits' => 'El campo debe ser un número de 6 dígitos.',
+                'code.exists' => 'El codigo no existe.',
+            ]
+        );
     }
 
     protected function validatorPassword(array $data)
@@ -112,6 +120,9 @@ class RegisterController extends Controller
                         'password' =>  Hash::make($password)
                     ]);
 
+                    $estudiante->est_estado = 1;
+                    $estudiante->save();
+
                     $user->password =  $password;
                     // $user->url =  signedRoute '/user/auth/login-token/' . $user->token;
                     $user->url =  URL::signedRoute('user.auth.login-token', ['id' => $user->id]);
@@ -120,7 +131,10 @@ class RegisterController extends Controller
                     Mail::to($estudiante->est_correo)->send(new CrearCuentaMail($user));
                 });
             } catch (\Throwable $th) {
-                return Redirect::route('user.auth.register')->with(['message' => 'Ocurrio un error, vuelva a intentarlo', 'status' => false]);
+
+                return back()->withErrors('Ha ocurrido un error, por favor inténtelo de nuevo más tarde' , $th->getMessage());
+
+                //return Redirect::route('user.auth.register')->with(['message' => 'Ocurrio un error, vuelva a intentarlo', 'status' => false]);
             }
         } else {
             return Redirect::route('user.auth.register')->with(['message' => 'El usuario ya se encuentra registrado', 'status' => false]);
@@ -153,6 +167,88 @@ class RegisterController extends Controller
         $user->tyc_state =  1;
         $user->save();
         return Redirect::route('user.index');
+    }
+
+
+    public function registerStudent(Request $request)
+    {
+
+
+        $this->validate(
+            $request,
+            [
+
+                'nombres' =>  'required',
+                'paterno' =>  'required',
+                'materno' =>  'required',
+                'correo' =>  'required|email|unique:estudiantes,est_correo',
+                'dni' =>  'required|digits:8|unique:estudiantes,est_dni',
+                'celular' =>  'required|digits:9|unique:estudiantes,est_celular',
+                'codigo_mat' =>  'required|digits:6|unique:estudiantes,est_codigo_mat',
+            ],
+            [
+                'nombres.required' => 'Campo obligatorio',
+                'paterno.required' => 'Campo obligatorio',
+                'materno.required' => 'Campo obligatorio',
+
+                'correo.required' => 'Campo obligatorio',
+                'correo.email' => 'No tiene un formato de correo valido',
+                'correo.unique' => 'El correo ya se encuentra registrado',
+
+                'dni.required' => 'Campo obligatorio',
+                'dni.digits' => 'El campo debe ser un número de 8 dígitos.',
+                'dni.unique' => 'El DNI ya se encuentra registrado',
+
+                'celular.required' => 'Campo obligatorio',
+                'celular.digits' => 'El campo debe ser un número de 9 dígitos.',
+                'celular.unique' => 'El número de celular ya se encuentra registrado',
+
+                'codigo_mat.required' => 'Campo obligatorio',
+                'codigo_mat.digits' => 'El campo debe ser un número de 6 dígitos.',
+                'codigo_mat.unique' => 'El Cod. de matricula ya se encuentra registrado',
+            ]
+        );
+
+
+
+        try {
+            DB::transaction(function () use ($request) {
+
+                $estudiante =  Estudiante::create([
+                    'est_nombres' => $request->nombres,
+                    'est_paterno' => $request->paterno,
+                    'est_materno' => $request->materno,
+                    'est_correo' => $request->correo,
+                    'est_dni' => $request->dni,
+                    'est_celular' => $request->celular,
+                    'est_codigo_mat' => $request->codigo_mat,
+                    'est_estado' => 1,
+                ]);
+
+                if ($estudiante) {
+
+                    $password =  Str::random(8);
+                    $user =  User::create([
+                        'name' =>  $estudiante->est_nombres . ' ' . $estudiante->est_paterno . ' ' . $estudiante->est_materno,
+                        'email' => $estudiante->est_correo,
+                        'student' => $estudiante->est_id,
+                        'password' =>  Hash::make($password)
+                    ]);
+
+
+                    $user->password =  $password;
+                    // $user->url =  signedRoute '/user/auth/login-token/' . $user->token;
+                    $user->url =  URL::signedRoute('user.auth.login-token', ['id' => $user->id]);
+                    // user.auth.login-token
+
+                    Mail::to($estudiante->est_correo)->send(new CrearCuentaMail($user));
+                }
+
+                return back()->with(['message' => 'Usuario creado y correo Enviado', 'status' => true]);;
+            });
+        } catch (\Throwable $th) {
+            return back()->withErrors('Ha ocurrido un error, por favor inténtelo de nuevo más tarde' , $th->getMessage());
+        }
     }
     //
 }

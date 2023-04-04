@@ -37,7 +37,6 @@ import { useForm } from '@inertiajs/inertia-vue3'
 const form = useForm({
     email: null,
     password: null,
-
 })
 
 const submit = () => {

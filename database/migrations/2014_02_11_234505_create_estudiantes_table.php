@@ -22,7 +22,7 @@ return new class extends Migration
             $table->char('est_dni', 8)->unique();
             $table->char('est_celular', 9);
             $table->char('est_codigo_mat', 6)->unique();
-            $table->boolean('est_estado')->default(1);
+            $table->boolean('est_estado')->default(0);
             $table->timestamps();
         });
     }

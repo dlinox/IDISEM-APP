@@ -17,6 +17,7 @@ const toast = useToast();
 
 const alert = ref({});
 
+
 const respuesta = computed(() => {
     alert.value = usePage().props.value.flash;
     return usePage().props.value.flash;

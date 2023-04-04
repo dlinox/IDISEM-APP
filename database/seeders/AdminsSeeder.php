@@ -20,16 +20,6 @@ class AdminsSeeder extends Seeder
 
 
 
-        Role::create([
-            'guard_name' => 'admin',
-            'name' => 'ADMINISTRADOR',
-            'redirect' => 'admin.dashboard'
-        ]);
-        Role::create([
-            'guard_name' => 'admin',
-            'name' => 'INVESTIGADOR',
-            'redirect' => 'admin.encuestas.listado'
-        ]);
 
         Admin::create([
             'name' => 'Admin Uno',
