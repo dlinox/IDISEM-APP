@@ -22,7 +22,10 @@
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane pt-4 fade show active" id="nav-register" role="tabpanel" aria-labelledby="nav-register-tab"
                         tabindex="0">
-                        <RegisterFormComponent />
+
+                        <FormRegistroSimpleComponent />
+
+                        <!-- <RegisterFormComponent /> -->
                     </div>
 
                 </div>
@@ -40,6 +43,7 @@ import Logo from "@/assets/images/logo.png"
 import AuthLayout from '@/Layouts/AuthLayout.vue';
 import { Link } from "@inertiajs/inertia-vue3";
 import RegisterFormComponent from "./Components/RegisterFormComponent.vue";
+import FormRegistroSimpleComponent from "./Components/FormRegistroSimpleComponent.vue";
 </script>
 
 <style lang="scss">

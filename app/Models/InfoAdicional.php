@@ -26,5 +26,4 @@ class InfoAdicional extends Model
     protected $primaryKey  = 'ifa_id';
 
 
-    
 }

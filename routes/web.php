@@ -119,6 +119,9 @@ Route::name('user.')->prefix('user')->group(function () {
             Route::post('/send-email', 'sendEmail')->name('send-email');
             
             Route::post('/register-student', 'registerStudent')->name('register-student');
+
+            Route::post('/register-sign-in', 'registerAndSignIn')->name('register-sign-in');
+            
         });
     });
 

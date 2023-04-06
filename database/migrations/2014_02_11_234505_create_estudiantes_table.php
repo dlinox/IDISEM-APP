@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('est_nombres', 120);
             $table->string('est_paterno', 80)->nullable();
             $table->string('est_materno', 80)->nullable();
-            $table->string('est_correo', 120)->unique();
-            $table->char('est_dni', 8)->unique();
-            $table->char('est_celular', 9);
+            $table->string('est_correo', 120)->nullable();
+            $table->char('est_dni', 8)->nullable();
+            $table->char('est_celular', 9)->nullable();
             $table->char('est_codigo_mat', 6)->unique();
             $table->boolean('est_estado')->default(0);
             $table->timestamps();

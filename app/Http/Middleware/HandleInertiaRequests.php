@@ -30,10 +30,11 @@ class HandleInertiaRequests extends Middleware
                         'id' => $request->user()->id,
                         'email' => $request->user()->email,
                         'name' => $request->user()->name,
-                        'rol_name' =>   Auth::guard('admin')->check() ?  $request->user()->getRoleNames()[0] :  '-',
+                        'rol_name' =>   Auth::guard('admin')->check() ?  $request->user()->getRoleNames()[0] :  'Estudiante',
                         'pass_state' => $request->user()->password_state,
                         'info_state' => $request->user()->info_state,
                         'tyc_state' => $request->user()->tyc_state,
+                        'password' => $request->user()->password_temp,
                         'menu' => Auth::guard('admin')->check() ?  $this->getUserMenu($request->user()) : ''
                     ] : null,
                 ];

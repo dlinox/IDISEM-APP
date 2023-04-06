@@ -132,7 +132,7 @@ class RegisterController extends Controller
                 });
             } catch (\Throwable $th) {
 
-                return back()->withErrors('Ha ocurrido un error, por favor inténtelo de nuevo más tarde' , $th->getMessage());
+                return back()->withErrors('Ha ocurrido un error, por favor inténtelo de nuevo más tarde', $th->getMessage());
 
                 //return Redirect::route('user.auth.register')->with(['message' => 'Ocurrio un error, vuelva a intentarlo', 'status' => false]);
             }
@@ -247,8 +247,71 @@ class RegisterController extends Controller
                 return back()->with(['message' => 'Usuario creado y correo Enviado', 'status' => true]);;
             });
         } catch (\Throwable $th) {
-            return back()->withErrors('Ha ocurrido un error, por favor inténtelo de nuevo más tarde' , $th->getMessage());
+            return back()->withErrors('Ha ocurrido un error, por favor inténtelo de nuevo más tarde', $th->getMessage());
         }
     }
     //
+
+    public function registerAndSignIn(Request $request)
+    {
+
+
+        $this->validate(
+            $request,
+            [
+                'correo' =>  'nullable|email|unique:estudiantes,est_correo',
+                'codigo_mat' =>  'required|digits:6|unique:estudiantes,est_codigo_mat',
+            ],
+            [
+                'correo.email' => 'No tiene un formato de correo valido',
+                'correo.unique' => 'El correo ya se encuentra registrado',
+
+                'codigo_mat.required' => 'Campo obligatorio',
+                'codigo_mat.digits' => 'El campo debe ser un número de 6 dígitos.',
+                'codigo_mat.unique' => 'El Cod. de matricula ya se encuentra registrado',
+            ]
+        );
+
+        try {
+            // DB::transaction(function () use ($request) {
+
+            $estudiante =  Estudiante::create([
+                'est_nombres' => $request->nombres,
+                'est_paterno' => $request->paterno,
+                'est_materno' => $request->materno,
+                'est_correo' => $request->correo ?? $request->codigo_mat,
+                'est_dni' => $request->dni,
+                'est_celular' => $request->celular,
+                'est_codigo_mat' => $request->codigo_mat,
+                'est_estado' => 1,
+            ]);
+
+            if ($estudiante) {
+
+                $password =  Str::random(8);
+
+                $user = User::create([
+                    'name' =>  $estudiante->est_codigo_mat,
+                    'email' => $request->correo ?? $estudiante->est_codigo_mat,
+                    'student' => $estudiante->est_id,
+                    'password' =>  Hash::make($password),
+                    'password_temp' => $password,
+                ]);
+
+                if (Auth::attempt(['email' => $user->email, 'password' => $password])) {
+
+                    return redirect()->intended('/user')->with('data', $password);
+                } else {
+
+                    return back()->with(['status' => false, 'message' => 'Ha ocurrido un error'])
+                        ->withInput($request->only('codigo_mat', 'email'));
+                }
+            }
+
+            return back()->with(['message' => 'Usuario creado', 'status' => true]);;
+            // });
+        } catch (\Throwable $th) {
+            return back()->withErrors('Ha ocurrido un error, por favor inténtelo de nuevo más tarde', $th->getMessage());
+        }
+    }
 }

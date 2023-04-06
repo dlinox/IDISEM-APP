@@ -6,6 +6,9 @@
                 <img :src="Logo" alt="Logo" srcset="">
             </div>
 
+            
+
+
             <p>
                 Hola, estamos realizando un estudio sobre el nivel de felicidad de los estudiantes de la Universidad
                 Nacional del Altiplano de Puno; por ello queremos conocer tu opinión al respecto, te hacemos conocer que
@@ -26,6 +29,8 @@
                 en este estudio.
             </p>
 
+            <AlertCodeAccessComponent />
+            
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
 
                 <Link  class="btn btn-text text-danger order-2 order-md-1" href="/user/auth/logout" method="delete"
@@ -47,6 +52,7 @@ import Logo from '@/assets/images/logo.png'
 import { ref } from 'vue';
 import { Inertia } from '@inertiajs/inertia';
 import { Link } from '@inertiajs/inertia-vue3';
+import AlertCodeAccessComponent from './AlertCodeAccessComponent.vue';
 const props = defineProps({
     cancel: {
         type: Boolean,

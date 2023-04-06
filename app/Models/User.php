@@ -26,6 +26,7 @@ class User extends Authenticatable
         'password',
         'password_state',
         'state',
+        'password_temp'
     ];
 
     /**

@@ -25,6 +25,7 @@ return new class extends Migration
             $table->boolean('state')->default(1);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('password_temp', 8)->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->foreign('student')->references('est_id')->on('estudiantes')->onDelete('restrict');

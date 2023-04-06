@@ -24,7 +24,7 @@ class UserLoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email'   => 'required|email',
+            'email'   => 'required|digits:6',
             'password' => 'required|min:6'
         ];
     }
@@ -33,7 +33,10 @@ class UserLoginRequest extends FormRequest
     {
         return [
             'email.required' => '*Obligatorio',
-            'email.email' => 'Formato incorrecto',
+            //'email.email' => 'Formato incorrecto',
+            'email.digits' => 'El campo debe ser un número de 6 dígitos.',
+
+
             'password.required' => '*Obligatorio',
             'password.min' => '6 caracteres como minimo',
         ];
