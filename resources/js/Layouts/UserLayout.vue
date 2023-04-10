@@ -1,68 +1,69 @@
 <template>
     <div class="wrap-app" :class="positionDrawer ? 'phones' : ''">
-
-
         <div class="content-app">
             <nav class="nav-app">
-                <div class="w-100 h-100 d-flex justify-content-between align-items-center px-3">
-
+                <div
+                    class="w-100 h-100 d-flex justify-content-between align-items-center px-3"
+                >
                     <Link href="/user" class="logo">
-                    <img :src="Logo" alt="">
+                        <img :src="Logo" alt="" />
                     </Link>
 
                     <div>
                         <div class="dropdown">
-                            <button class="btn btn-outline-dark" type="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
+                            <button
+                                class="btn btn-outline-dark"
+                                type="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                            >
                                 <i class="bi bi-person"></i>
                             </button>
                             <ul class="dropdown-menu">
-                                <li>
+                                <!-- <li>
                                     <a class="dropdown-item disabled" href="#">
                                         <i class="bi bi-person-bounding-box me-2"></i>
                                         Perfil
                                     </a>
-                                </li>
+                                </li> -->
                                 <!-- <li><a class="dropdown-item" href="#"> <i class="bi bi-gear me-2"></i>
                                         Configuraciones</a></li>-->
                                 <li>
-
-                                    <Link class="dropdown-item text-danger" href="/user/auth/logout" method="delete"
-                                        as="button">
-                                    <i class="bi bi-box-arrow-left me-2"></i>
-                                    Salir
+                                    <Link
+                                        class="dropdown-item text-danger"
+                                        href="/user/auth/logout"
+                                        method="delete"
+                                        as="button"
+                                    >
+                                        <i
+                                            class="bi bi-box-arrow-left me-2"
+                                        ></i>
+                                        Salir
                                     </Link>
-
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
-
             </nav>
             <main class="main-app">
                 <slot></slot>
             </main>
-
         </div>
-
     </div>
-
 </template>
 <script setup>
-import { ref, computed } from 'vue';
-import { Link, usePage } from '@inertiajs/inertia-vue3';
-import Logo from '@/assets/images/logo.png'
+import { ref, computed } from "vue";
+import { Link, usePage } from "@inertiajs/inertia-vue3";
+import Logo from "@/assets/images/logo.png";
 
-const user = computed(() => usePage().props.value.auth)
+const user = computed(() => usePage().props.value.auth);
 
 const positionDrawer = computed(() => {
     if (widthScreen.value < 768) {
-
         drawer.value = false;
         return true;
-    }
-    else {
+    } else {
         drawer.value = drawer.value ? true : drawer.value;
         return false;
     }
@@ -74,15 +75,14 @@ const widthScreen = ref(0);
 
 const handleResize = () => {
     widthScreen.value = window.innerWidth;
-}
+};
 
 const initialize = () => {
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     handleResize();
-}
+};
 
 initialize();
-
 </script>
 
 <style lang="scss" scoped>
@@ -100,7 +100,7 @@ initialize();
         height: 100vh;
         width: 100vw;
         position: relative;
-        transition: all .3s ease;
+        transition: all 0.3s ease;
 
         .nav-app {
             width: 100%;
@@ -114,14 +114,13 @@ initialize();
             .logo {
                 display: flex;
                 width: 5rem;
-                border-radius: .4rem;
+                border-radius: 0.4rem;
                 overflow: hidden;
-                padding: .1rem;
+                padding: 0.1rem;
 
                 img {
                     width: 100%;
                 }
-
             }
         }
 

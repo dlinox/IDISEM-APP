@@ -9,7 +9,6 @@
         <template v-else-if="user.tyc_state && !user.info_state">
             <HeadingPageComponent :heading="heading_info" />
             <div class="container py-4">
-               
                 <AlertCodeAccessComponent />
 
                 <div class="card border-0">
@@ -24,10 +23,17 @@
         <template v-else-if="user.tyc_state && user.info_state">
             <HeadingPageComponent :heading="heading" />
 
-            
             <div class="container py-4">
                 <AlertCodeAccessComponent />
                 <div class="row">
+                    <div
+                        v-if="encuestas.length == 0"
+                        class="col-12 my-4 empty text-muted"
+                    >
+                        <i class="bi bi-folder2-open"></i>
+
+                        <span>No hay encuestas disponibles</span>
+                    </div>
                     <div
                         v-for="(item, index) in encuestas"
                         :key="index"
@@ -67,3 +73,19 @@ const heading = {
     description: "Encuestas disponibles",
 };
 </script>
+
+<style lang="scss">
+.empty {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    i {
+        font-size: 4.5rem;
+    }
+    span {
+        font-size: 1rem;
+        width: 100%;
+        text-align: center;
+    }
+}
+</style>
