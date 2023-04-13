@@ -21,7 +21,7 @@
     "isEntry": true
   },
   "resources/js/app.js": {
-    "file": "assets/app.f6d3d36c.js",
+    "file": "assets/app.098e3b2c.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [
@@ -74,18 +74,18 @@
     ]
   },
   "resources/js/Pages/Admin/Administradores/Crear.vue": {
-    "file": "assets/Crear.17ca7097.js",
+    "file": "assets/Crear.d61002f5.js",
     "src": "resources/js/Pages/Admin/Administradores/Crear.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_AdminLayout.b8a98517.js",
+      "_AdminLayout.93242f1c.js",
       "_logo.01f735ba.js",
       "__plugin-vue_export-helper.cdc0426e.js"
     ]
   },
-  "_AdminLayout.b8a98517.js": {
-    "file": "assets/AdminLayout.b8a98517.js",
+  "_AdminLayout.93242f1c.js": {
+    "file": "assets/AdminLayout.93242f1c.js",
     "imports": [
       "_logo.01f735ba.js",
       "resources/js/app.js",
@@ -105,36 +105,36 @@
     "file": "assets/_plugin-vue_export-helper.cdc0426e.js"
   },
   "resources/js/Pages/Admin/Administradores/Editar.vue": {
-    "file": "assets/Editar.5d89cd56.js",
+    "file": "assets/Editar.003b5f79.js",
     "src": "resources/js/Pages/Admin/Administradores/Editar.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_AdminLayout.b8a98517.js",
+      "_AdminLayout.93242f1c.js",
       "_logo.01f735ba.js",
       "__plugin-vue_export-helper.cdc0426e.js"
     ]
   },
   "resources/js/Pages/Admin/Administradores/index.vue": {
-    "file": "assets/index.cb85f496.js",
+    "file": "assets/index.1ef8f37e.js",
     "src": "resources/js/Pages/Admin/Administradores/index.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_AdminLayout.b8a98517.js",
-      "_throttle.f56fe6ce.js",
+      "_AdminLayout.93242f1c.js",
+      "_throttle.63d8041e.js",
       "_logo.01f735ba.js",
       "__plugin-vue_export-helper.cdc0426e.js"
     ]
   },
-  "_throttle.f56fe6ce.js": {
-    "file": "assets/throttle.f56fe6ce.js",
+  "_throttle.63d8041e.js": {
+    "file": "assets/throttle.63d8041e.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
   "resources/js/Pages/Admin/Auth/Components/LoginFormComponent.vue": {
-    "file": "assets/LoginFormComponent.9db24274.js",
+    "file": "assets/LoginFormComponent.bb92b0cd.js",
     "src": "resources/js/Pages/Admin/Auth/Components/LoginFormComponent.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -142,12 +142,12 @@
     ]
   },
   "resources/js/Pages/Admin/Auth/Login.vue": {
-    "file": "assets/Login.2cf5598d.js",
+    "file": "assets/Login.c86efd8d.js",
     "src": "resources/js/Pages/Admin/Auth/Login.vue",
     "isDynamicEntry": true,
     "imports": [
       "_logo.01f735ba.js",
-      "_AuthLayout.03d7cdf7.js",
+      "_AuthLayout.5cd79c93.js",
       "resources/js/Pages/Admin/Auth/Components/LoginFormComponent.vue",
       "resources/js/app.js"
     ],
@@ -155,8 +155,8 @@
       "assets/Login.6fb3ce93.css"
     ]
   },
-  "_AuthLayout.03d7cdf7.js": {
-    "file": "assets/AuthLayout.03d7cdf7.js",
+  "_AuthLayout.5cd79c93.js": {
+    "file": "assets/AuthLayout.5cd79c93.js",
     "imports": [
       "resources/js/app.js"
     ],
@@ -165,34 +165,34 @@
     ]
   },
   "resources/js/Pages/Admin/Auth/Register.vue": {
-    "file": "assets/Register.e8890dbe.js",
+    "file": "assets/Register.5de630d9.js",
     "src": "resources/js/Pages/Admin/Auth/Register.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_MenuComponent.907a90d2.js"
+      "_MenuComponent.8075b935.js"
     ]
   },
-  "_MenuComponent.907a90d2.js": {
-    "file": "assets/MenuComponent.907a90d2.js",
+  "_MenuComponent.8075b935.js": {
+    "file": "assets/MenuComponent.8075b935.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
   "resources/js/Pages/Admin/Components/CalificacionEncuestaComponent.vue": {
-    "file": "assets/CalificacionEncuestaComponent.e74fbf26.js",
+    "file": "assets/CalificacionEncuestaComponent.5d0e13ef.js",
     "src": "resources/js/Pages/Admin/Components/CalificacionEncuestaComponent.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_ModalComponent.d9ec1cfe.js"
+      "_ModalComponent.67fdc92d.js"
     ],
     "css": [
       "assets/ModalComponent.1ee45248.css"
     ]
   },
-  "_ModalComponent.d9ec1cfe.js": {
-    "file": "assets/ModalComponent.d9ec1cfe.js",
+  "_ModalComponent.67fdc92d.js": {
+    "file": "assets/ModalComponent.67fdc92d.js",
     "imports": [
       "resources/js/app.js"
     ],
@@ -201,19 +201,19 @@
     ]
   },
   "resources/js/Pages/Admin/Components/CompartirEncuestaComponent.vue": {
-    "file": "assets/CompartirEncuestaComponent.77b4a6b8.js",
+    "file": "assets/CompartirEncuestaComponent.8fd63347.js",
     "src": "resources/js/Pages/Admin/Components/CompartirEncuestaComponent.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_ModalComponent.d9ec1cfe.js"
+      "_ModalComponent.67fdc92d.js"
     ],
     "css": [
       "assets/ModalComponent.1ee45248.css"
     ]
   },
   "resources/js/Pages/Admin/Components/DropDownTypeComponent.vue": {
-    "file": "assets/DropDownTypeComponent.064f2875.js",
+    "file": "assets/DropDownTypeComponent.72eca00c.js",
     "src": "resources/js/Pages/Admin/Components/DropDownTypeComponent.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -221,7 +221,7 @@
     ]
   },
   "resources/js/Pages/Admin/Components/LinearScaleComponent.vue": {
-    "file": "assets/LinearScaleComponent.0f21280a.js",
+    "file": "assets/LinearScaleComponent.368f91bd.js",
     "src": "resources/js/Pages/Admin/Components/LinearScaleComponent.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -229,7 +229,7 @@
     ]
   },
   "resources/js/Pages/Admin/Components/SingleOptionComponent.vue": {
-    "file": "assets/SingleOptionComponent.d1736dff.js",
+    "file": "assets/SingleOptionComponent.8e24edf6.js",
     "src": "resources/js/Pages/Admin/Components/SingleOptionComponent.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -237,7 +237,7 @@
     ]
   },
   "resources/js/Pages/Admin/Components/TypeContentComponent.vue": {
-    "file": "assets/TypeContentComponent.0117e65c.js",
+    "file": "assets/TypeContentComponent.a6e85945.js",
     "src": "resources/js/Pages/Admin/Components/TypeContentComponent.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -247,19 +247,19 @@
     ]
   },
   "resources/js/Pages/Admin/Encuestas/Crear.vue": {
-    "file": "assets/Crear.68956ead.js",
+    "file": "assets/Crear.16bd72ab.js",
     "src": "resources/js/Pages/Admin/Encuestas/Crear.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_AdminLayout.b8a98517.js",
-      "_vue-draggable-next.esm-bundler.3673d822.js",
+      "_AdminLayout.93242f1c.js",
+      "_vue-draggable-next.esm-bundler.37c48887.js",
       "resources/js/Pages/Admin/Components/CalificacionEncuestaComponent.vue",
       "resources/js/Pages/Admin/Components/DropDownTypeComponent.vue",
       "resources/js/Pages/Admin/Components/TypeContentComponent.vue",
       "_logo.01f735ba.js",
       "__plugin-vue_export-helper.cdc0426e.js",
-      "_ModalComponent.d9ec1cfe.js",
+      "_ModalComponent.67fdc92d.js",
       "resources/js/Pages/Admin/Components/SingleOptionComponent.vue",
       "resources/js/Pages/Admin/Components/LinearScaleComponent.vue"
     ],
@@ -269,26 +269,26 @@
       "assets/ModalComponent.1ee45248.css"
     ]
   },
-  "_vue-draggable-next.esm-bundler.3673d822.js": {
-    "file": "assets/vue-draggable-next.esm-bundler.3673d822.js",
+  "_vue-draggable-next.esm-bundler.37c48887.js": {
+    "file": "assets/vue-draggable-next.esm-bundler.37c48887.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
   "resources/js/Pages/Admin/Encuestas/Editar.vue": {
-    "file": "assets/Editar.47c676d2.js",
+    "file": "assets/Editar.32cf9bcc.js",
     "src": "resources/js/Pages/Admin/Encuestas/Editar.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_AdminLayout.b8a98517.js",
-      "_vue-draggable-next.esm-bundler.3673d822.js",
+      "_AdminLayout.93242f1c.js",
+      "_vue-draggable-next.esm-bundler.37c48887.js",
       "resources/js/Pages/Admin/Components/CalificacionEncuestaComponent.vue",
       "resources/js/Pages/Admin/Components/DropDownTypeComponent.vue",
       "resources/js/Pages/Admin/Components/TypeContentComponent.vue",
       "_logo.01f735ba.js",
       "__plugin-vue_export-helper.cdc0426e.js",
-      "_ModalComponent.d9ec1cfe.js",
+      "_ModalComponent.67fdc92d.js",
       "resources/js/Pages/Admin/Components/SingleOptionComponent.vue",
       "resources/js/Pages/Admin/Components/LinearScaleComponent.vue"
     ],
@@ -299,11 +299,11 @@
     ]
   },
   "resources/js/Pages/Admin/Encuestas/Respuestas.vue": {
-    "file": "assets/Respuestas.c09dd588.js",
+    "file": "assets/Respuestas.3f024849.js",
     "src": "resources/js/Pages/Admin/Encuestas/Respuestas.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_AdminLayout.b8a98517.js",
+      "_AdminLayout.93242f1c.js",
       "resources/js/app.js",
       "__plugin-vue_export-helper.cdc0426e.js",
       "_logo.01f735ba.js"
@@ -314,16 +314,16 @@
     ]
   },
   "resources/js/Pages/Admin/Encuestas/index.vue": {
-    "file": "assets/index.9b51a63b.js",
+    "file": "assets/index.3dd3cd71.js",
     "src": "resources/js/Pages/Admin/Encuestas/index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_AdminLayout.b8a98517.js",
+      "_AdminLayout.93242f1c.js",
       "resources/js/app.js",
       "resources/js/Pages/Admin/Components/CompartirEncuestaComponent.vue",
       "_logo.01f735ba.js",
       "__plugin-vue_export-helper.cdc0426e.js",
-      "_ModalComponent.d9ec1cfe.js"
+      "_ModalComponent.67fdc92d.js"
     ],
     "css": [
       "assets/HeadingPagesComponent.8169ee08.css",
@@ -331,13 +331,13 @@
     ]
   },
   "resources/js/Pages/Admin/Estudiantes/index.vue": {
-    "file": "assets/index.963fc661.js",
+    "file": "assets/index.32a269d8.js",
     "src": "resources/js/Pages/Admin/Estudiantes/index.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_AdminLayout.b8a98517.js",
-      "_throttle.f56fe6ce.js",
+      "_AdminLayout.93242f1c.js",
+      "_throttle.63d8041e.js",
       "_logo.01f735ba.js",
       "__plugin-vue_export-helper.cdc0426e.js"
     ],
@@ -346,12 +346,12 @@
     ]
   },
   "resources/js/Pages/Admin/Roles/Editar.vue": {
-    "file": "assets/Editar.1358827b.js",
+    "file": "assets/Editar.6f4b70e7.js",
     "src": "resources/js/Pages/Admin/Roles/Editar.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_AdminLayout.b8a98517.js",
+      "_AdminLayout.93242f1c.js",
       "__plugin-vue_export-helper.cdc0426e.js",
       "_logo.01f735ba.js"
     ],
@@ -360,75 +360,75 @@
     ]
   },
   "resources/js/Pages/Admin/Roles/index.vue": {
-    "file": "assets/index.9f2f9cda.js",
+    "file": "assets/index.13948f50.js",
     "src": "resources/js/Pages/Admin/Roles/index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_AdminLayout.b8a98517.js",
+      "_AdminLayout.93242f1c.js",
       "resources/js/app.js",
       "_logo.01f735ba.js",
       "__plugin-vue_export-helper.cdc0426e.js"
     ]
   },
   "resources/js/Pages/Admin/Usuarios/index.vue": {
-    "file": "assets/index.61a712a5.js",
+    "file": "assets/index.04dfb3ec.js",
     "src": "resources/js/Pages/Admin/Usuarios/index.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_AdminLayout.b8a98517.js",
-      "_throttle.f56fe6ce.js",
+      "_AdminLayout.93242f1c.js",
+      "_throttle.63d8041e.js",
       "_logo.01f735ba.js",
       "__plugin-vue_export-helper.cdc0426e.js"
     ]
   },
   "resources/js/Pages/Admin/index.vue": {
-    "file": "assets/index.c9234886.js",
+    "file": "assets/index.d1d54981.js",
     "src": "resources/js/Pages/Admin/index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_AdminLayout.b8a98517.js",
+      "_AdminLayout.93242f1c.js",
       "resources/js/app.js",
       "_logo.01f735ba.js",
       "__plugin-vue_export-helper.cdc0426e.js"
     ]
   },
   "resources/js/Pages/Home.vue": {
-    "file": "assets/Home.66fa63c1.js",
+    "file": "assets/Home.6dda04ac.js",
     "src": "resources/js/Pages/Home.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_MenuComponent.907a90d2.js",
+      "_MenuComponent.8075b935.js",
       "resources/js/app.js"
     ]
   },
   "resources/js/Pages/User/Auth/Components/AlertCodeAccessComponent.vue": {
-    "file": "assets/AlertCodeAccessComponent.823deea8.js",
+    "file": "assets/AlertCodeAccessComponent.a9c5230d.js",
     "src": "resources/js/Pages/User/Auth/Components/AlertCodeAccessComponent.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
       "resources/js/Pages/User/Auth/Components/ChangePasswordComponent.vue",
-      "_ModalComponent.d9ec1cfe.js"
+      "_ModalComponent.67fdc92d.js"
     ],
     "css": [
       "assets/ModalComponent.1ee45248.css"
     ]
   },
   "resources/js/Pages/User/Auth/Components/ChangePasswordComponent.vue": {
-    "file": "assets/ChangePasswordComponent.70dad9b1.js",
+    "file": "assets/ChangePasswordComponent.c757f8cb.js",
     "src": "resources/js/Pages/User/Auth/Components/ChangePasswordComponent.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_ModalComponent.d9ec1cfe.js"
+      "_ModalComponent.67fdc92d.js"
     ],
     "css": [
       "assets/ModalComponent.1ee45248.css"
     ]
   },
   "resources/js/Pages/User/Auth/Components/FormRegisterEstudianteComponent.vue": {
-    "file": "assets/FormRegisterEstudianteComponent.7c620c3e.js",
+    "file": "assets/FormRegisterEstudianteComponent.bd1aa806.js",
     "src": "resources/js/Pages/User/Auth/Components/FormRegisterEstudianteComponent.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -436,7 +436,7 @@
     ]
   },
   "resources/js/Pages/User/Auth/Components/FormRegistroSimpleComponent.vue": {
-    "file": "assets/FormRegistroSimpleComponent.962e44f1.js",
+    "file": "assets/FormRegistroSimpleComponent.4f9ebd8b.js",
     "src": "resources/js/Pages/User/Auth/Components/FormRegistroSimpleComponent.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -444,7 +444,7 @@
     ]
   },
   "resources/js/Pages/User/Auth/Components/LoginFormComponent.vue": {
-    "file": "assets/LoginFormComponent.bbdfc512.js",
+    "file": "assets/LoginFormComponent.0eb4554c.js",
     "src": "resources/js/Pages/User/Auth/Components/LoginFormComponent.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -452,12 +452,12 @@
     ]
   },
   "resources/js/Pages/User/Auth/Components/RegisterFormComponent.vue": {
-    "file": "assets/RegisterFormComponent.3704c6a6.js",
+    "file": "assets/RegisterFormComponent.91b625a1.js",
     "src": "resources/js/Pages/User/Auth/Components/RegisterFormComponent.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_ModalComponent.d9ec1cfe.js",
+      "_ModalComponent.67fdc92d.js",
       "resources/js/Pages/User/Auth/Components/FormRegisterEstudianteComponent.vue"
     ],
     "css": [
@@ -465,11 +465,11 @@
     ]
   },
   "resources/js/Pages/User/Auth/Components/TerminosYCondicionesComponent.vue": {
-    "file": "assets/TerminosYCondicionesComponent.73f71836.js",
+    "file": "assets/TerminosYCondicionesComponent.c30116bb.js",
     "src": "resources/js/Pages/User/Auth/Components/TerminosYCondicionesComponent.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_ModalComponent.d9ec1cfe.js",
+      "_ModalComponent.67fdc92d.js",
       "_logo.01f735ba.js",
       "resources/js/app.js",
       "resources/js/Pages/User/Auth/Components/AlertCodeAccessComponent.vue",
@@ -480,12 +480,12 @@
     ]
   },
   "resources/js/Pages/User/Auth/Login.vue": {
-    "file": "assets/Login.ae603960.js",
+    "file": "assets/Login.06487b05.js",
     "src": "resources/js/Pages/User/Auth/Login.vue",
     "isDynamicEntry": true,
     "imports": [
       "_logo.01f735ba.js",
-      "_AuthLayout.03d7cdf7.js",
+      "_AuthLayout.5cd79c93.js",
       "resources/js/app.js",
       "resources/js/Pages/User/Auth/Components/LoginFormComponent.vue"
     ],
@@ -494,12 +494,12 @@
     ]
   },
   "resources/js/Pages/User/Auth/Register.vue": {
-    "file": "assets/Register.f59d5c1e.js",
+    "file": "assets/Register.48ee09d4.js",
     "src": "resources/js/Pages/User/Auth/Register.vue",
     "isDynamicEntry": true,
     "imports": [
       "_logo.01f735ba.js",
-      "_AuthLayout.03d7cdf7.js",
+      "_AuthLayout.5cd79c93.js",
       "resources/js/app.js",
       "resources/js/Pages/User/Auth/Components/FormRegistroSimpleComponent.vue"
     ],
@@ -509,7 +509,7 @@
     ]
   },
   "resources/js/Pages/User/Components/CardEncuestaComponent.vue": {
-    "file": "assets/CardEncuestaComponent.21a68f0e.js",
+    "file": "assets/CardEncuestaComponent.3c159a5a.js",
     "src": "resources/js/Pages/User/Components/CardEncuestaComponent.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -523,7 +523,7 @@
     ]
   },
   "resources/js/Pages/User/Components/CardPreguntaComponent.vue": {
-    "file": "assets/CardPreguntaComponent.c5adb747.js",
+    "file": "assets/CardPreguntaComponent.b7725b5a.js",
     "src": "resources/js/Pages/User/Components/CardPreguntaComponent.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -534,7 +534,7 @@
     ]
   },
   "resources/js/Pages/User/Components/FormularioDatosGeneral.vue": {
-    "file": "assets/FormularioDatosGeneral.07b3b47a.js",
+    "file": "assets/FormularioDatosGeneral.b454051b.js",
     "src": "resources/js/Pages/User/Components/FormularioDatosGeneral.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -545,7 +545,7 @@
     ]
   },
   "resources/js/Pages/User/Components/HeadingPageComponent.vue": {
-    "file": "assets/HeadingPageComponent.bb03ec20.js",
+    "file": "assets/HeadingPageComponent.2d8d1cbc.js",
     "src": "resources/js/Pages/User/Components/HeadingPageComponent.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -557,7 +557,7 @@
     ]
   },
   "resources/js/Pages/User/Encuestas/Components/InputCheckboxComponent.vue": {
-    "file": "assets/InputCheckboxComponent.2f4a8bf1.js",
+    "file": "assets/InputCheckboxComponent.7a148471.js",
     "src": "resources/js/Pages/User/Encuestas/Components/InputCheckboxComponent.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -566,7 +566,7 @@
     ]
   },
   "resources/js/Pages/User/Encuestas/Components/InputRadioComponent.vue": {
-    "file": "assets/InputRadioComponent.32e5e508.js",
+    "file": "assets/InputRadioComponent.66a8cbab.js",
     "src": "resources/js/Pages/User/Encuestas/Components/InputRadioComponent.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -575,7 +575,7 @@
     ]
   },
   "resources/js/Pages/User/Encuestas/Components/InputTextComponent.vue": {
-    "file": "assets/InputTextComponent.09608089.js",
+    "file": "assets/InputTextComponent.5a74f0f8.js",
     "src": "resources/js/Pages/User/Encuestas/Components/InputTextComponent.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -584,7 +584,7 @@
     ]
   },
   "resources/js/Pages/User/Encuestas/Components/SelectComponent.vue": {
-    "file": "assets/SelectComponent.31fef870.js",
+    "file": "assets/SelectComponent.a04dfc6b.js",
     "src": "resources/js/Pages/User/Encuestas/Components/SelectComponent.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -593,7 +593,7 @@
     ]
   },
   "resources/js/Pages/User/Encuestas/Components/TextareaComponent.vue": {
-    "file": "assets/TextareaComponent.fbe79237.js",
+    "file": "assets/TextareaComponent.5596158c.js",
     "src": "resources/js/Pages/User/Encuestas/Components/TextareaComponent.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -602,12 +602,12 @@
     ]
   },
   "resources/js/Pages/User/Encuestas/ShowEncuesta.vue": {
-    "file": "assets/ShowEncuesta.a94d04fa.js",
+    "file": "assets/ShowEncuesta.1e06390e.js",
     "src": "resources/js/Pages/User/Encuestas/ShowEncuesta.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_UserLayout.67004864.js",
+      "_UserLayout.603a3e18.js",
       "resources/js/Pages/User/Encuestas/Components/InputTextComponent.vue",
       "resources/js/Pages/User/Encuestas/Components/TextareaComponent.vue",
       "resources/js/Pages/User/Encuestas/Components/InputRadioComponent.vue",
@@ -622,8 +622,8 @@
       "assets/ShowEncuesta.8f6afd9f.css"
     ]
   },
-  "_UserLayout.67004864.js": {
-    "file": "assets/UserLayout.67004864.js",
+  "_UserLayout.603a3e18.js": {
+    "file": "assets/UserLayout.603a3e18.js",
     "imports": [
       "resources/js/app.js",
       "_logo.01f735ba.js",
@@ -634,11 +634,11 @@
     ]
   },
   "resources/js/Pages/User/Encuestas/index.vue": {
-    "file": "assets/index.2f12bd30.js",
+    "file": "assets/index.bd4541cd.js",
     "src": "resources/js/Pages/User/Encuestas/index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_UserLayout.67004864.js",
+      "_UserLayout.603a3e18.js",
       "resources/js/Pages/User/Components/CardEncuestaComponent.vue",
       "resources/js/Pages/User/Components/HeadingPageComponent.vue",
       "resources/js/app.js",
@@ -647,12 +647,12 @@
     ]
   },
   "resources/js/Pages/User/index.vue": {
-    "file": "assets/index.fd9583b2.js",
+    "file": "assets/index.8a505214.js",
     "src": "resources/js/Pages/User/index.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_UserLayout.67004864.js",
+      "_UserLayout.603a3e18.js",
       "resources/js/Pages/User/Auth/Components/TerminosYCondicionesComponent.vue",
       "resources/js/Pages/User/Components/CardEncuestaComponent.vue",
       "resources/js/Pages/User/Components/FormularioDatosGeneral.vue",
@@ -660,7 +660,7 @@
       "resources/js/Pages/User/Auth/Components/AlertCodeAccessComponent.vue",
       "_logo.01f735ba.js",
       "__plugin-vue_export-helper.cdc0426e.js",
-      "_ModalComponent.d9ec1cfe.js",
+      "_ModalComponent.67fdc92d.js",
       "resources/js/Pages/User/Auth/Components/ChangePasswordComponent.vue"
     ],
     "css": [
@@ -672,25 +672,29 @@
     "file": "assets/app.4522082c.css",
     "src": "resources/js/app.css"
   },
-  "resources/js/Pages/Admin/Encuestas/Editar.css": {
-    "file": "assets/Editar.aaa3d766.css",
-    "src": "resources/js/Pages/Admin/Encuestas/Editar.css"
+  "resources/js/Pages/User/Components/CardPreguntaComponent.css": {
+    "file": "assets/CardPreguntaComponent.80c0abad.css",
+    "src": "resources/js/Pages/User/Components/CardPreguntaComponent.css"
   },
-  "ModalComponent.css": {
-    "file": "assets/ModalComponent.1ee45248.css",
-    "src": "ModalComponent.css"
+  "resources/js/Pages/Admin/Roles/Editar.css": {
+    "file": "assets/Editar.caf39e7b.css",
+    "src": "resources/js/Pages/Admin/Roles/Editar.css"
   },
-  "resources/js/Pages/User/index.css": {
-    "file": "assets/index.6dcf6053.css",
-    "src": "resources/js/Pages/User/index.css"
-  },
-  "HeadingPagesComponent.css": {
-    "file": "assets/HeadingPagesComponent.8169ee08.css",
-    "src": "HeadingPagesComponent.css"
+  "resources/js/Pages/Admin/Auth/Login.css": {
+    "file": "assets/Login.6fb3ce93.css",
+    "src": "resources/js/Pages/Admin/Auth/Login.css"
   },
   "resources/js/Pages/Admin/Encuestas/Respuestas.css": {
     "file": "assets/Respuestas.ff4f790f.css",
     "src": "resources/js/Pages/Admin/Encuestas/Respuestas.css"
+  },
+  "AuthLayout.css": {
+    "file": "assets/AuthLayout.be147b43.css",
+    "src": "AuthLayout.css"
+  },
+  "resources/js/Pages/User/index.css": {
+    "file": "assets/index.6dcf6053.css",
+    "src": "resources/js/Pages/User/index.css"
   },
   "resources/js/Pages/Admin/Encuestas/Crear.css": {
     "file": "assets/Crear.aaa3d766.css",
@@ -700,53 +704,49 @@
     "file": "assets/index.b88a6205.css",
     "src": "resources/js/Pages/Admin/Estudiantes/index.css"
   },
-  "resources/js/Pages/Admin/Roles/Editar.css": {
-    "file": "assets/Editar.caf39e7b.css",
-    "src": "resources/js/Pages/Admin/Roles/Editar.css"
-  },
-  "resources/js/Pages/User/Encuestas/ShowEncuesta.css": {
-    "file": "assets/ShowEncuesta.8f6afd9f.css",
-    "src": "resources/js/Pages/User/Encuestas/ShowEncuesta.css"
+  "resources/js/Pages/User/Auth/Register.css": {
+    "file": "assets/Register.01de45b3.css",
+    "src": "resources/js/Pages/User/Auth/Register.css"
   },
   "resources/js/Pages/User/Auth/Login.css": {
     "file": "assets/Login.326aa7d7.css",
     "src": "resources/js/Pages/User/Auth/Login.css"
   },
-  "resources/js/Pages/User/Components/CardEncuestaComponent.css": {
-    "file": "assets/CardEncuestaComponent.5d675ee7.css",
-    "src": "resources/js/Pages/User/Components/CardEncuestaComponent.css"
+  "resources/js/Pages/User/Components/HeadingPageComponent.css": {
+    "file": "assets/HeadingPageComponent.27e09a98.css",
+    "src": "resources/js/Pages/User/Components/HeadingPageComponent.css"
   },
-  "resources/js/Pages/User/Components/FormularioDatosGeneral.css": {
-    "file": "assets/FormularioDatosGeneral.401de042.css",
-    "src": "resources/js/Pages/User/Components/FormularioDatosGeneral.css"
-  },
-  "AdminLayout.css": {
-    "file": "assets/AdminLayout.b155f48c.css",
-    "src": "AdminLayout.css"
-  },
-  "AuthLayout.css": {
-    "file": "assets/AuthLayout.be147b43.css",
-    "src": "AuthLayout.css"
-  },
-  "resources/js/Pages/Admin/Auth/Login.css": {
-    "file": "assets/Login.6fb3ce93.css",
-    "src": "resources/js/Pages/Admin/Auth/Login.css"
+  "resources/js/Pages/User/Encuestas/ShowEncuesta.css": {
+    "file": "assets/ShowEncuesta.8f6afd9f.css",
+    "src": "resources/js/Pages/User/Encuestas/ShowEncuesta.css"
   },
   "UserLayout.css": {
     "file": "assets/UserLayout.8b5c9e80.css",
     "src": "UserLayout.css"
   },
-  "resources/js/Pages/User/Components/CardPreguntaComponent.css": {
-    "file": "assets/CardPreguntaComponent.80c0abad.css",
-    "src": "resources/js/Pages/User/Components/CardPreguntaComponent.css"
+  "ModalComponent.css": {
+    "file": "assets/ModalComponent.1ee45248.css",
+    "src": "ModalComponent.css"
   },
-  "resources/js/Pages/User/Components/HeadingPageComponent.css": {
-    "file": "assets/HeadingPageComponent.27e09a98.css",
-    "src": "resources/js/Pages/User/Components/HeadingPageComponent.css"
+  "resources/js/Pages/User/Components/FormularioDatosGeneral.css": {
+    "file": "assets/FormularioDatosGeneral.401de042.css",
+    "src": "resources/js/Pages/User/Components/FormularioDatosGeneral.css"
   },
-  "resources/js/Pages/User/Auth/Register.css": {
-    "file": "assets/Register.01de45b3.css",
-    "src": "resources/js/Pages/User/Auth/Register.css"
+  "resources/js/Pages/Admin/Encuestas/Editar.css": {
+    "file": "assets/Editar.aaa3d766.css",
+    "src": "resources/js/Pages/Admin/Encuestas/Editar.css"
+  },
+  "resources/js/Pages/User/Components/CardEncuestaComponent.css": {
+    "file": "assets/CardEncuestaComponent.5d675ee7.css",
+    "src": "resources/js/Pages/User/Components/CardEncuestaComponent.css"
+  },
+  "HeadingPagesComponent.css": {
+    "file": "assets/HeadingPagesComponent.8169ee08.css",
+    "src": "HeadingPagesComponent.css"
+  },
+  "AdminLayout.css": {
+    "file": "assets/AdminLayout.b155f48c.css",
+    "src": "AdminLayout.css"
   },
   "resources/sass/app.scss": {
     "file": "assets/app.e3c48e31.css",

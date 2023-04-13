@@ -40,20 +40,20 @@ const selectType = (val) => {
 }
 
 const types = [
-    {
-        name: 'Respuesta Corta',
-        icon: 'bi bi-filter-left',
-        input: 'TEXT',
-        active: true,
-    },
+    // {
+    //     name: 'Respuesta Corta',
+    //     icon: 'bi bi-filter-left',
+    //     input: 'TEXT',
+    //     active: true,
+    // },
 
-    {
-        name: 'Respuesta Larga',
-        icon: 'bi bi-text-left',
-        input: 'TEXTAREA',
-        active: true,
-        divider: true
-    },
+    // {
+    //     name: 'Respuesta Larga',
+    //     icon: 'bi bi-text-left',
+    //     input: 'TEXTAREA',
+    //     active: true,
+    //     divider: true
+    // },
     {
         name: 'Opción unica',
         icon: 'bi bi-ui-radios',
