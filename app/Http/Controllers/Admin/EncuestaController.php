@@ -49,7 +49,7 @@ class EncuestaController extends Controller
             });
 
 
-        if (Auth::user()->can('admin.listar.editar.todo')) {
+        if (Auth::user()->getRoleNames()[0] == 'ADMINISTRADOR') {
             $encuestas = Encuesta::join('admins', 'enc_adm_id', 'id')
                 ->get()
                 ->map(function ($encuersta) {
