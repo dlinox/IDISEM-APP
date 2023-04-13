@@ -9,7 +9,7 @@
                 <b> {{ user.password }} </b>
             </div>
 
-            <ChangePasswordComponent button />
+            <!-- <ChangePasswordComponent button /> -->
         </div>
     </div>
 </template>
