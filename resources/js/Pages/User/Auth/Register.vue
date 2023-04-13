@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="card-footer">
-                ENCUESTA © 2022
+                IDISEM © 2022
             </div>
         </div>
 
