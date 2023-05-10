@@ -58,8 +58,7 @@ class CalificacionesController extends Controller
          */
 
         $res = Respuesta::select(
-            DB::raw("
-                (SELECT cal_id FROM calificacions WHERE cal_enc_id = $id AND  cal_max >= sum(res_ponderado_total) AND cal_min <= sum(res_ponderado_total) ) AS nivel")
+            DB::raw("(SELECT cal_id FROM calificacions WHERE cal_enc_id = $id AND  cal_max >= sum(res_ponderado_total) AND cal_min <= sum(res_ponderado_total) ) AS nivel")
         )->leftjoin('preguntas', 'res_pre_id', 'pre_id')
             ->leftjoin('seccions', 'pre_sec_id', 'sec_id')
             ->leftjoin('encuestas', 'sec_enc_id', 'enc_id')
