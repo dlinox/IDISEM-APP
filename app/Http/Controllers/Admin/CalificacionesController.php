@@ -58,7 +58,7 @@ class CalificacionesController extends Controller
          */
 
         $res = Respuesta::select(
-            DB::raw("(SELECT cal_id FROM calificacions WHERE cal_enc_id = $id AND  cal_max >= sum(res_ponderado_total) AND cal_min <= sum(res_ponderado_total) ) AS nivel")
+            DB::raw(" res_use_id , name,  sum(res_ponderado_total) AS res ")
         )->leftjoin('preguntas', 'res_pre_id', 'pre_id')
             ->leftjoin('seccions', 'pre_sec_id', 'sec_id')
             ->leftjoin('encuestas', 'sec_enc_id', 'enc_id')
@@ -69,20 +69,20 @@ class CalificacionesController extends Controller
 
 
 
-        $calificaciones = Calificacion::select('cal_id', 'cal_detalle')->where('cal_enc_id', $id)->get();
+        $calificaciones = Calificacion::select('cal_id', 'cal_detalle', 'cal_max', 'cal_min')->where('cal_enc_id', $id)->get();
+
         $repetidos = (array) (array_count_values(array_column($res->toArray(), 'nivel')));
 
         foreach ($calificaciones as $value) {
             $value->cant = 0;
-            foreach ($repetidos as $j => $item) {
-
-                if ($value->cal_id === $j) {
-                    $value->cant = $item;
+            foreach ($res as $item) {
+                if (($value->cal_min <= $item->res) && ($item->res <= $value->cal_max)) {
+                    $value->cant++;
                 }
             }
         }
 
-        //$respuestas = 
+
         $this->response['estado'] = true;
         $this->response['datos'] = $res;
         $this->response['mensaje'] =  'todo bien';

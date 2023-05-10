@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Calificacion;
 use App\Models\Respuesta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -60,13 +61,7 @@ class RespuestasController extends Controller
             'res_use_id',
             'name',
             DB::raw("
-            sum(res_ponderado_total) AS res,
-                (SELECT cal_detalle
-                FROM calificacions
-                WHERE cal_enc_id = $id 
-                AND  cal_max >= sum(res_ponderado_total) 
-                AND cal_min <= sum(res_ponderado_total) ) AS nivel
-         ")
+            sum(res_ponderado_total) AS res")
         )->join('preguntas', 'res_pre_id', 'pre_id')
             ->join('seccions', 'pre_sec_id', 'sec_id')
             ->join('encuestas', 'sec_enc_id', 'enc_id')
@@ -74,6 +69,18 @@ class RespuestasController extends Controller
             ->where('enc_id', $id)
             ->groupby('res_use_id', 'name')
             ->get();
+
+        $calificaciones = Calificacion::select('cal_id', 'cal_detalle', 'cal_max', 'cal_min')->where('cal_enc_id', $id)->get();
+
+        $repetidos = (array) (array_count_values(array_column($res->toArray(), 'nivel')));
+
+        foreach ($res as $item) {
+            foreach ($calificaciones as $value) {
+                if (($value->cal_min <= $item->res) && ($item->res <= $value->cal_max)) {
+                    $item->nivel = $value->cal_detalle . '(' . $value->cal_min . ' - ' . $value->cal_max . ')';
+                }
+            }
+        }
 
         $this->response['estado'] = true;
         $this->response['datos'] = $res;

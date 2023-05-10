@@ -6,7 +6,7 @@
             <div class="card border-0 my-3">
                 <div class="card-header border-0 bg-primary d-flex justify-content-between align-items-center">
                     <small class="text-light fw-bold">
-                        50 Respuestas
+                        {{total_respuestas}} Respuestas
                     </small>
 
                     <button class="btn btn-sm btn-outline-light" @click="downloadExcelEncuesta(encuesta.enc_id)">
@@ -169,7 +169,8 @@ Chart.register(...registerables);
 
 const props = defineProps({
     encuesta: Object,
-    preguntas: Array
+    preguntas: Array,
+    total_respuestas: Number
 });
 
 const backgroundColor = ['#77CEFF', '#0079AF', '#123E6B', '#97B0C4', '#A5C8ED'];

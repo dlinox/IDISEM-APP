@@ -110,7 +110,7 @@ class EncuestaController extends Controller
     }
 
     private function createEncuesta($data)
-    { 
+    {
         return Encuesta::create([
             'enc_titulo' => $data->titulo,
             'enc_descripcion' =>  $data->descripcion,
@@ -119,7 +119,7 @@ class EncuestaController extends Controller
     }
 
     private function createCalificaciones($data, $encuesta)
-    { 
+    {
 
         foreach ($data as $val) {
             $fileName = Str::random(8) . '-' . time() . '.' . $val['img']->extension();
@@ -136,14 +136,14 @@ class EncuestaController extends Controller
         }
     }
     private function createSeccion($data, $encuesta)
-    { 
+    {
         return Seccion::create([
             'sec_titulo' => $data['titulo'],
             'sec_enc_id' => $encuesta->enc_id
         ]);
     }
     private function createPregunta($data, $seccion)
-    { 
+    {
 
         $opcion = $data['tipo'] === 'TEXT' ||  $data['tipo'] === 'TEXTAREA'
             ? 'NO'
@@ -160,7 +160,7 @@ class EncuestaController extends Controller
     }
 
     private function createOpcion($data, $pregunta)
-    { 
+    {
         return Opcion::create([
             'opc_detalle' => $data['detalle'],
             'opc_ponderado' =>  $data['ponderado'],
@@ -202,6 +202,16 @@ class EncuestaController extends Controller
 
     public function show($id)
     {
+        $total_respuestas =   Respuesta::select('res_use_id')
+            ->join('preguntas', 'res_pre_id', 'pre_id')
+            ->join('seccions', 'pre_sec_id', 'sec_id')
+            ->join('encuestas', 'sec_enc_id', 'enc_id')
+            ->where('enc_id', $id)
+            ->groupby('res_use_id',)
+            ->get()
+            ->count();
+
+
         $encuesta = Encuesta::find($id);
         $preguntas = Pregunta::select('pre_id', 'pre_titulo', 'pre_tipo', 'pre_opcion')
             ->join('seccions', 'sec_id', 'pre_sec_id')
@@ -227,7 +237,8 @@ class EncuestaController extends Controller
             'Admin/Encuestas/Respuestas',
             [
                 'encuesta' => $encuesta,
-                'preguntas' => $preguntas
+                'preguntas' => $preguntas,
+                'total_respuestas' => $total_respuestas
             ]
         );
     }
