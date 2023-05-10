@@ -106,12 +106,11 @@ class EncuestaController extends Controller
 
     public function create()
     {
-        //crear una encuesta
         return Inertia::render('Admin/Encuestas/Crear');
     }
 
     private function createEncuesta($data)
-    { //REQUEST ENCUESTA --> Pasar al modelo encuesta
+    { 
         return Encuesta::create([
             'enc_titulo' => $data->titulo,
             'enc_descripcion' =>  $data->descripcion,
@@ -120,7 +119,7 @@ class EncuestaController extends Controller
     }
 
     private function createCalificaciones($data, $encuesta)
-    { //REQUEST ENCUESTA --> Pasar al modelo calificaion
+    { 
 
         foreach ($data as $val) {
             $fileName = Str::random(8) . '-' . time() . '.' . $val['img']->extension();
@@ -137,14 +136,14 @@ class EncuestaController extends Controller
         }
     }
     private function createSeccion($data, $encuesta)
-    { //REQUEST ENCUESTA --> Pasar al modelo seccion
+    { 
         return Seccion::create([
             'sec_titulo' => $data['titulo'],
             'sec_enc_id' => $encuesta->enc_id
         ]);
     }
     private function createPregunta($data, $seccion)
-    { //REQUEST ENCUESTA --> Pasar al modelo Pregunta
+    { 
 
         $opcion = $data['tipo'] === 'TEXT' ||  $data['tipo'] === 'TEXTAREA'
             ? 'NO'
@@ -161,7 +160,7 @@ class EncuestaController extends Controller
     }
 
     private function createOpcion($data, $pregunta)
-    { //REQUEST ENCUESTA --> Pasar al modelo Opcion
+    { 
         return Opcion::create([
             'opc_detalle' => $data['detalle'],
             'opc_ponderado' =>  $data['ponderado'],
@@ -188,13 +187,13 @@ class EncuestaController extends Controller
                 }
             });
             return Redirect::route('admin.encuestas.formulario.crear')->with([
-                'message' => 'Encuesta created.',
+                'message' => 'Encuesta creada.',
                 'status' => true,
             ]);
         } catch (\Throwable $error) {
 
             return Redirect::route('admin.encuestas.formulario.crear')->with([
-                'message' => 'Encuesta created.',
+                'message' => 'Errro al crear la encuesta.',
                 'status' => true,
                 'data' => $error
             ]);
